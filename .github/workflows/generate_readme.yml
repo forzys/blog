@@ -77,6 +77,6 @@ jobs:
         run: |
           git config --local user.email "${{ env.GITHUB_EMAIL }}"
           git config --local user.name "${{ env.GITHUB_NAME }}"
-          git add archive/*.md
+          git add archive/*.md archive/*.json
           git commit -a -m 'update archive' || echo "nothing to commit"
           git push || echo "nothing to push"
