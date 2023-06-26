@@ -1,5 +1,5 @@
  
- <!-- 记录 master分支 cherry-pick 其他分支的提交内容(commit)时发现有大量冲突的解决办法   -->
+ <!-- intro: master分支 cherry-pick 其他分支的提交内容(commit)时发现有大量冲突的解决办法   -->
   
 **场景：**	master分支 **cherry-pick** testing分支的提交内容(commit)时发现有大量冲突
 
