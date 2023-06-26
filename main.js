@@ -66,7 +66,7 @@ async function main() {
                 });
             });
 
-            fs.writeFile(name,  JSON.stringify(info), (err) => {
+            fs.writeFile(path.join(issuesDir, name),  JSON.stringify(info), (err) => {
                 if (err) { throw err }
             });
         });
