@@ -16,6 +16,7 @@ on:
 env:
   GITHUB_NAME: imm-o
   GITHUB_EMAIL: zys@outlook.in
+  GITHUB_TOKEN: ${{ secrets.G_T }}
 
 jobs:
   sync:
@@ -64,9 +65,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - run: node main.js
-        with:
-          repo: imm-o/blog
-          dist: docs
+      - run: node main.js 
         env:
           GITHUB_TOKEN: ${{ secrets.G_T }}
