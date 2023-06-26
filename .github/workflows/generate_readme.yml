@@ -15,6 +15,8 @@ on:
 
 env:
   GITHUB_NAME: imm-o
+  GITHUB_REPO: blog
+  GITHUB_DIST: archive
   GITHUB_EMAIL: zys@outlook.in
   GITHUB_TOKEN: ${{ secrets.G_T }}
 
@@ -70,8 +72,11 @@ jobs:
 
       - name: Install and Run
         run: yarn && node main.js 
-        with:
-          repo: imm-o/blog
-          dist: docs
-        env:
-          GITHUB_TOKEN: ${{ secrets.G_T }}
+
+      - name: Push Md
+        run: |
+          git config --local user.email "${{ env.GITHUB_EMAIL }}"
+          git config --local user.name "${{ env.GITHUB_NAME }}"
+          git add archive/*.md
+          git commit -a -m 'update archive' || echo "nothing to commit"
+          git push || echo "nothing to push"
