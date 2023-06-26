@@ -3,6 +3,47 @@ const path = require('path');
 const core = require('@actions/core');
 const github = require('@actions/github');
  
+
+
+
+
+
+
+function onArchive(issues, space){
+    let externalDir = path.join(space, 'external'); 
+    if (!fs.existsSync(externalDir)) {
+        fs.mkdirSync(externalDir)
+    }
+
+    const onJson = (config)=>{
+        const feature = ['{}', '[]'] 
+        if (feature.includes(config.slice(0, 1) + config.slice(-1))) {
+            return JSON.parse(config) || {}
+        }
+        return {}
+    }
+    
+    const files = fs.readdirSync(externalDir); 
+
+    const exts = files.map(name=>{
+        const body = fs.readFileSync(externalDir+'/'+name).toString();
+        const [, config] = body?.match(new RegExp('<!-- config: (.*?) -->')) || []
+        
+        return {
+            title: name.replace('.md',''),
+            body,
+            ...onJson(config),
+        }
+    });
+
+    return [].concat(issues, exts).sort((a,b)=>a?.created_at - b?.created_at);
+}
+
+
+
+
+
+
 async function main() {
     try { 
         var owner = process.env['GITHUB_NAME']
@@ -13,8 +54,7 @@ async function main() {
         core.info(`GITHUB_REPO = '${repo}'`);
         core.info(`ISSUES_DIST = '${dist}'`);
 
-        let ghToken = process.env['GITHUB_TOKEN']
-       
+        let ghToken = process.env['GITHUB_TOKEN'] 
         if (!ghToken) {
             throw new Error('GITHUB_TOKEN not defined')
         }
@@ -23,35 +63,37 @@ async function main() {
         if (!ghWorkspacePath) {
             throw new Error('GITHUB_WORKSPACE not defined')
         }
+
         ghWorkspacePath = path.resolve(ghWorkspacePath)
         core.info(`GITHUB_WORKSPACE = '${ghWorkspacePath}'`)
 
         let issuesDir = path.join(ghWorkspacePath, dist);
+        
         if (!fs.existsSync(issuesDir)) {
             fs.mkdirSync(issuesDir)
         }
 
         const octokit = github.getOctokit(ghToken);
         const { data } = await octokit.issues.listForRepo({ owner, repo }); 
- 
+     
+        const values = onArchive(data, ghWorkspacePath)
+
         let issues = []
-        for(let i= 0; i< data.length; i+= 15){
-            issues.push(data.slice(i, i + 15)) 
+        for(let i= 0; i< values?.length; i+= 15){
+            issues.push(values?.slice(i, i + 15)) 
         }
  
-        fs.writeFile(path.join(issuesDir, 'blog.json'), JSON.stringify({ total: data.length, pageSize: 15 }), (err)=>{
+        fs.writeFile(path.join(issuesDir, 'blog.json'), JSON.stringify({ total: values.length, pageSize: 15 }), (err)=>{
             if (err) { throw err } 
-        }); 
-
+        });
 
         issues.forEach((issue, index)=>{
-            const info = { page: index + 1, total: data.length, pageSize: 15, data: [] }
+            const info = { page: index + 1, total: values.length, pageSize: 15, data: [] }
             const name = 'blog_' + index + '.json'
             
             issue.forEach(ele=>{
                 let file = path.join(issuesDir, ele.number + '-' + ele.title.replace(/ /g,'_') + '.md');
- 
-                const [, intro] = ele?.body?.match(new RegExp('<!--(.*?) -->')) || []
+                const [, intro] = ele?.body?.match(new RegExp('<!--intro: (.*?) -->')) || []
 
                 info.data.push({
                     id: ele?.id,
@@ -61,9 +103,7 @@ async function main() {
                     updated:ele?.created_at,
                     name : ele?.number + '-' + ele?.title.replace(/ /g,'_') + '.md',
                     intro: intro, 
-                }); 
-
-                // ele.body.slice(0, 100)
+                });
 
                 fs.writeFile(file, ele.body, (err) => {
                     if (err) { throw err }
