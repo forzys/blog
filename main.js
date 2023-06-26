@@ -92,16 +92,16 @@ async function main() {
             const name = 'blog_' + index + '.json'
             
             issue.forEach(ele=>{
-                let file = path.join(issuesDir, ele.number + '-' + ele.title.replace(/ /g,'_') + '.md');
-                const [, intro] = ele?.body?.match(new RegExp('<!--intro: (.*?) -->')) || []
+                let file = path.join(issuesDir, [ele?.number, ele?.title.replace(/ /g,'_')].filter(Boolean).join('-') + '.md');
+                const [, intro] = ele?.body?.match(new RegExp('<!-- intro: (.*?) -->')) || []
 
                 info.data.push({
                     id: ele?.id,
                     title: ele?.title,
-                    author:ele?.user?.login,
+                    author:ele?.user?.login || owner,
                     labels:ele?.labels?.map(i=>i?.name),
                     updated:ele?.created_at,
-                    name : ele?.number + '-' + ele?.title.replace(/ /g,'_') + '.md',
+                    name : [ele?.number, ele?.title.replace(/ /g,'_')].filter(Boolean).join('-') + '.md',
                     intro: intro, 
                 });
 
