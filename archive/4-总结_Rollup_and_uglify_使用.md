@@ -1,4 +1,4 @@
-<!-- intro: 总结rollup and uglify的使用, rollup 是一款小巧的javascript模块打包工具，使用模块化工具Rollup打包自己开发的JS库, 并使用uglify压缩代码-->
+<!-- intro: 总结rollup and uglify的使用, rollup 是一款小巧的javascript模块打包工具，使用模块化工具Rollup打包自己开发的JS库, 并使用uglify压缩代码  -->
 
 
 ### 简介:
