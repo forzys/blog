@@ -5,15 +5,18 @@ const github = require('@actions/github');
 
 // most @actions toolkit packages have async methods
 async function run() {
-    try {
-        var repo = core.getInput('repo');
-        var dist = core.getInput('dist');
-        var [owner, repo] = repo.split('/');
+    try { 
+        var owner = process.env['GITHUB_NAME']
+        var repo = process.env['GITHUB_REPO']
+        var dist = process.env['GITHUB_DIST'] 
+  
         core.info(`GITHUB_OWNER = '${owner}'`);
         core.info(`GITHUB_REPO = '${repo}'`);
         core.info(`ISSUES_DIST = '${dist}'`);
 
         let ghToken = process.env['GITHUB_TOKEN']
+      
+
         if (!ghToken) {
             throw new Error('GITHUB_TOKEN not defined')
         }
