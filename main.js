@@ -3,12 +3,7 @@ const path = require('path');
 const core = require('@actions/core');
 const github = require('@actions/github');
  
-
-
-
-
-
-
+ 
 function onArchive(issues, space){
     let externalDir = path.join(space, 'external'); 
     if (!fs.existsSync(externalDir)) {
@@ -16,11 +11,15 @@ function onArchive(issues, space){
     }
 
     const onJson = (config)=>{
-        const feature = ['{}', '[]'] 
-        if (feature.includes(config.slice(0, 1) + config.slice(-1))) {
-            return JSON.parse(config) || {}
-        }
-        return {}
+        try{
+            const feature = ['{}', '[]'] 
+            if (feature.includes(config.slice(0, 1) + config.slice(-1))) {
+                return JSON.parse(config) || {}
+            }
+            return {}
+        }catch(e){
+            return {}
+        } 
     }
     
     const files = fs.readdirSync(externalDir); 
@@ -36,12 +35,12 @@ function onArchive(issues, space){
         }
     });
 
-    return [].concat(issues, exts).sort((a,b)=>a?.created_at - b?.created_at);
+    return [].concat(issues, exts).sort((a,b)=>{
+        if(!b?.created_at) return -1
+        return b?.created_at - a?.created_at
+    });
 }
-
-
-
-
+ 
 
 
 async function main() {
@@ -92,6 +91,7 @@ async function main() {
             const name = 'blog_' + index + '.json'
             
             issue.forEach(ele=>{
+                
                 let file = path.join(issuesDir, [ele?.number, ele?.title.replace(/ /g,'_')].filter(Boolean).join('-') + '.md');
                 const [, intro] = ele?.body?.match(new RegExp('<!-- intro: (.*?) -->')) || []
 
