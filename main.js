@@ -39,7 +39,6 @@ async function main() {
             issues.push(data.slice(i, i + 15)) 
         }
  
- 
         fs.writeFile(path.join(issuesDir, 'blog.json'), JSON.stringify({ total: data.length, pageSize: 15 }), (err)=>{
             if (err) { throw err } 
         }); 
@@ -48,17 +47,23 @@ async function main() {
         issues.forEach((issue, index)=>{
             const info = { page: index + 1, total: data.length, pageSize: 15, data: [] }
             const name = 'blog_' + index + '.json'
-           
+            
             issue.forEach(ele=>{
-                let file = path.join(issuesDir, ele.number + '-' + ele.title.replace(' ','_') + '.md');
+                let file = path.join(issuesDir, ele.number + '-' + ele.title.replace(/ /g,'_') + '.md');
  
+                const [, intro] = ele?.body?.match(new RegExp('<!--(.*?) -->')) || []
+
                 info.data.push({
+                    id: ele?.id,
                     title: ele?.title,
                     author:ele?.user?.login,
                     labels:ele?.labels?.map(i=>i?.name),
                     updated:ele?.created_at,
-                    name : ele?.number + '-' + ele?.title.replace(' ','_') + '.md'
-                });
+                    name : ele?.number + '-' + ele?.title.replace(/ /g,'_') + '.md',
+                    intro: intro, 
+                }); 
+
+                // ele.body.slice(0, 100)
 
                 fs.writeFile(file, ele.body, (err) => {
                     if (err) { throw err }
