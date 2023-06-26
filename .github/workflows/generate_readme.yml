@@ -65,6 +65,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - run: yarn && node main.js 
+        run: yarn && node main.js 
+        with:
+          repo: imm-o/blog
+          dist: docs
         env:
           GITHUB_TOKEN: ${{ secrets.G_T }}
