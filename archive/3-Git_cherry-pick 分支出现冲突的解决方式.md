@@ -1,4 +1,6 @@
-
+ 
+ <!-- 记录 master分支 cherry-pick 其他分支的提交内容(commit)时发现有大量冲突的解决办法   -->
+  
 **场景：**	master分支 **cherry-pick** testing分支的提交内容(commit)时发现有大量冲突
 
 **原因:**	之前master分支**cherry-pick**过testing分支的内容  且**解决了冲突之后push到master**
