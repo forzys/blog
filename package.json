@@ -1,0 +1,16 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "My personal blog using issues and GitHub Actions (随意转载，无需署名) [RSS Feed](https://raw.githubusercontent.com/imm-o/blog/master/feed.xml) ## 友情链接 | Name | Link | Desc |   | ---- | ---- | ---- | ## 最近更新 - [用Github Issues 写博客](https://github.com/imm-o/blog/issues/2)--2023-06-25",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zys",
+  "license": "ISC",
+  "dependencies": {
+    "@actions/core": "^1.1.1",
+    "@actions/github": "^3.0.0"
+  }
+}
