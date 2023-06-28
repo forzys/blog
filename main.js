@@ -3,35 +3,34 @@ const path = require('path');
 const core = require('@actions/core');
 const github = require('@actions/github');
  
+
+
+function jsonFormat(text='', init={}) {
+    try{
+        const isJson = ['{}', '[]'].includes(text?.slice(0, 1) + text?.slice(-1)) 
+        return isJson ? JSON.parse(text) : init
+    }catch(e){
+        return init
+    }
+}
+
  
 function onArchive(issues, space){
     let externalDir = path.join(space, 'external'); 
     if (!fs.existsSync(externalDir)) {
         fs.mkdirSync(externalDir)
     }
-
-    const onJson = (config)=>{
-        try{
-            const feature = ['{}', '[]'] 
-            if (feature.includes(config.slice(0, 1) + config.slice(-1))) {
-                return JSON.parse(config) || {}
-            }
-            return {}
-        }catch(e){
-            return {}
-        } 
-    }
     
     const files = fs.readdirSync(externalDir); 
 
     const exts = files.map(name=>{
-        const body = fs.readFileSync(externalDir+'/'+name).toString();
+        const body = fs.readFileSync(externalDir + '/' + name).toString();
         const [, config] = body?.match(new RegExp('<!-- config: (.*?) -->')) || []
         
         return {
             title: name.replace('.md',''),
             body,
-            ...onJson(config),
+            ...jsonFormat(config)
         }
     });
 
@@ -73,9 +72,9 @@ async function main() {
         }
 
         const octokit = github.getOctokit(ghToken);
-        const { data } = await octokit.issues.listForRepo({ owner, repo }); 
+        const list = await octokit.issues.listForRepo({ owner, repo }); 
      
-        const values = onArchive(data, ghWorkspacePath)
+        const values = onArchive(list?.data, ghWorkspacePath)
 
         let issues = []
         for(let i= 0; i< values?.length; i+= 15){
