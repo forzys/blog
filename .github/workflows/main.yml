@@ -14,7 +14,7 @@ on:
       - main.js
 
 env:
-  GITHUB_NAME: imm-o
+  GITHUB_NAME: for2me
   GITHUB_REPO: blog
   GITHUB_DIST: archive
   GITHUB_EMAIL: zys@outlook.in
