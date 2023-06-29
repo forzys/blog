@@ -1,0 +1,122 @@
+
+
+
+
+.btn-item{
+    appearance: none;
+    text-align: left; 
+     
+    text-decoration: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    border: 0.0625rem solid transparent;
+    color: #000;
+     
+    width: auto;
+    min-width: 2rem;
+    height: 2rem;
+    line-height: 1;
+    white-space: nowrap;
+
+    padding: 0 calc(1rem / 2); 
+    font-size: 0.75rem;
+    border-radius: 0.25rem; 
+    background-color: #fff; 
+    touch-action: manipulation;
+
+    transition: all .2s cubic-bezier(.645,.045,.355,1);
+}
+ 
+.btn-item[data-compact]{
+    height: 1.625rem;
+}
+.btn-item[data-border]{ 
+    border-color: var(--border-color, currentColor);
+}
+
+.btn-item[data-disabled] {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+ 
+.btn-item:not([data-type]):hover{
+    color: #4096ff;
+    /* border-color: #4096ff; */
+    /* box-shadow: 0 0.1em 0.1em rgba(0,0,0,0.3); */
+    background-color: rgba(0,0,0,0.1);
+}
+
+.btn-item[data-type^=text]:hover{
+    /* color: rgba(0,0,0,.88); */
+    background-color: rgba(0,0,0,.06);
+}
+
+.btn-item[data-type^=text]{
+    background-image: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    line-height: 1.57;
+    /* color: rgba(0,0,0,.88); */
+    color: inherit;
+}
+
+.btn-item[data-type^=primary]{
+    --btn-color: var(--btn-primary-color);
+    --btn-hover-color: #4096ff;
+
+    color: #fff;
+    background-color: #1677ff;
+    box-shadow: 0 2px 0 rgba(5,145,255,.1);
+}
+.btn-item[data-type^=danger]{
+    --btn-color: var(--btn-danger-color); 
+    --btn-hover-color: var(--btn-hover-danger-color);
+  
+    color: #fff;
+    background-color: #ff4d4f;
+    box-shadow: 0 2px 0 rgba(255,38,5,.06);
+}
+
+.btn-item[data-type]:hover{
+    background-color: var(--btn-hover-color,--btn-color);
+}
+
+
+.btn-item[data-type][data-outline]{
+    background-color: transparent;
+    color: var(--btn-color); 
+    border-color: var(--btn-border-color, --btn-color);
+}
+
+.btn-item[data-type][data-outline]:hover{
+    background-color: transparent;
+    color: var(--btn-hover-color); 
+    border-color: var(--btn-color);
+}
+
+
+.btn-item:not([data-disabled]):not([data-type]):hover {
+    background-color: #f8f9fa;
+}
+
+.btn-item:not([data-disabled]):not([data-type]).active {
+    border-color: #228be6;
+    color: #228be6;
+}
+
+.btn-item:active:not([data-disabled]) {
+    transform: translateY(0.0625rem);
+}
+
+.btn-item:focus {
+    outline-offset: 0.125rem;
+    outline: 0.125rem solid #339af0;
+}
+
+.btn-item:focus:not(:focus-visible) {
+    outline: none;
+}

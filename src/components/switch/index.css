@@ -1,0 +1,158 @@
+
+
+
+
+
+
+
+
+
+.btn-switch{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: rgba(0,0,0,.88);
+    font-size: 14px;
+    line-height: 22px;
+    list-style: none;
+    position: relative;
+    display: inline-block;
+    min-width: 44px;
+    height: 22px;
+    vertical-align: middle;
+    background: rgba(0,0,0,.25);
+    border: 0;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all .2s;
+    user-select: none;
+}
+
+
+.btn-switch[data-disabled]{
+    opacity: .4; 
+    cursor: not-allowed;
+}
+
+ 
+button.btn-switch:focus,
+button.btn-switch:focus-visible {
+  outline:none;
+}
+
+.btn-switch.switch-checked:hover:not([data-disabled]) {
+    background: #4096ff;
+}
+
+.btn-switch.switch-checked:not([data-disabled]) {
+    background: #1677ff;
+}
+
+.btn-switch:hover:not([data-disabled]) {
+    background: rgba(0,0,0,.45);
+}
+
+.switch-handle{
+    position: absolute;
+    top: 2px;
+    inset-inline-start: 2px;
+    width: 18px;
+    height: 18px;
+    transition: all .2s ease-in-out;
+}
+
+.btn-switch.switch-checked .switch-handle {
+    inset-inline-start: calc(100% - 20px);
+}
+ 
+.switch-handle::before {
+    position: absolute;
+    top: 0;  
+    bottom: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
+    background-color: #fff;
+    border-radius: 9px;
+    box-shadow: 0 2px 4px 0 rgba(0,35,11,.2);
+    transition: all .2s ease-in-out;
+    content: ""; 
+}
+
+.btn-switch .switch-handle .action{ 
+    display: inline-flex;
+    align-items: center;  
+    line-height: 0;
+    text-align: center;
+    text-transform: none;
+    vertical-align: -0.125em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+
+    position: relative;
+    top: 2px;
+    color: rgba(0,0,0,.65);
+    vertical-align: top;
+}
+
+.btn-switch.switch-checked .switch-handle .action {
+    color: #1677ff;
+}
+
+
+
+
+.btn-switch.switch-checked:hover:not([data-disabled]) {
+    background: #4096ff;
+}
+
+.btn-switch .switch-inner {
+    box-sizing: border-box;
+    display: block;
+    overflow: hidden;
+    border-radius: 100px;
+    height: 100%; 
+    transition: padding-inline-start .2s ease-in-out,padding-inline-end .2s ease-in-out;
+    
+    
+    padding-inline-start: 24px;
+    padding-inline-end: 9px;
+}
+
+.btn-switch.switch-checked .switch-inner {
+    padding-inline-start: 9px;
+    padding-inline-end: 24px;
+ 
+}
+ 
+
+.btn-switch .switch-inner .inner-checked,
+.btn-switch .switch-inner .inner-uncheck{
+    box-sizing: border-box;
+    display: block;
+    color: #fff;
+    font-size: 12px;
+    transition: margin-inline-start .2s ease-in-out,margin-inline-end .2s ease-in-out;
+    pointer-events: none;
+}
+ 
+.btn-switch .switch-inner .inner-checked{
+    margin-inline-start: calc(-100% + 22px - 48px);
+    margin-inline-end: calc(100% - 22px + 48px);
+}
+
+.btn-switch .switch-inner .inner-uncheck{
+    margin-top: -22px;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+}
+
+
+.btn-switch.switch-checked .switch-inner .inner-checked {
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+}
+
+.btn-switch.switch-checked .switch-inner .inner-uncheck {
+    margin-inline-start: calc(100% - 22px + 48px);
+    margin-inline-end: calc(-100% + 22px - 48px);
+}

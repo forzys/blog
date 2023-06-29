@@ -1,0 +1,148 @@
+
+
+
+.modal-root{
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.modal-mask{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0; 
+    height: 100%;
+    z-index: 1000; 
+    background-color: rgba(0,0,0,.45);
+}
+
+.modal-wrap{
+    position: fixed;
+    top: 0;
+    inset-inline-end: 0;
+    bottom: 0;
+    inset-inline-start: 0;
+    overflow: auto;
+    outline: 0;
+    inset: 0; 
+    z-index: 1000;
+}
+.dialog{
+    width: 520px;
+    transform-origin: 128px 393px;
+
+    margin: 0 auto;
+    padding: 0;
+    color: rgba(0,0,0,.88);
+    font-size: 14px;
+    line-height: 1.57;
+    list-style: none;
+    pointer-events: none;
+    position: relative;
+    top: 100px; 
+    max-width: calc(100vw - 32px);
+    padding-bottom: 24px;
+}
+
+.modal-content{
+    position: relative;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 0;
+    border-radius: 8px;
+    box-shadow: 0 6px 16px 0 rgba(0,0,0,.08), 0 3px 6px -4px rgba(0,0,0,.12), 0 9px 28px 8px rgba(0,0,0,.05);
+    pointer-events: auto;
+    padding: 20px 24px;
+}
+
+.modal-close{
+    position: absolute;
+    top: 17px;
+    inset-inline-end: 17px;
+    z-index: 1010;
+    padding: 0;
+    color: rgba(0,0,0,.45);
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+    background: 0 0;
+    border-radius: 4px;
+    width: 22px;
+    height: 22px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    transition: color .2s,background-color .2s;
+}
+
+
+.modal-header{
+    color: rgba(0,0,0,.88);
+    background: #fff;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 8px;
+}
+
+.modal-body{
+    font-size: 14px;
+    line-height: 1.5714285714285714;
+    word-wrap: break-word;
+}
+
+
+.modal-title{
+    margin: 0;
+    color: rgba(0,0,0,.88);
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+
+
+.modal-root .fade-appear {
+    animation-timing-function: linear;
+    animation-duration: .2s;
+    animation-fill-mode: both;
+    animation-play-state: paused;
+
+    animation-name: ZoomIn;
+    animation-play-state: running;
+}
+
+.modal-root .fade-leave {
+    animation-timing-function: linear;
+    animation-duration: .2s;
+    animation-fill-mode: both;
+    animation-play-state: paused;
+
+    animation-name: ZoomOut;
+    animation-play-state: running;
+    pointer-events: none
+}
+ 
+
+@keyframes ZoomOut {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0.2);
+        opacity: 0
+    }
+}
+
+@keyframes ZoomIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.2)
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+ 

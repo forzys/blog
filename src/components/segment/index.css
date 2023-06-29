@@ -1,0 +1,71 @@
+
+
+
+
+.segment{
+    position: relative;
+    display: inline-flex;
+    width: auto;
+    flex-direction: row;
+    background-color: rgb(241, 243, 245);
+    border-radius: 0.25rem;
+    overflow: hidden;
+    padding: 4px;
+}
+
+.segment-active{
+    box-sizing: border-box;
+    border-radius: 0.25rem;
+    position: absolute;
+    z-index: 1;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0.0625rem 0.1875rem, rgba(0, 0, 0, 0.1) 0px 0.0625rem 0.125rem;
+    transition: transform 200ms ease 0s, width 100ms ease 0s;
+    background-color: rgb(255, 255, 255);
+    /* width: 58px;
+    height: 31.7595px;
+    transform: translate(0px, 0px); */
+}
+
+
+.segment .segment-item{
+    position: relative;
+    box-sizing: border-box;
+    flex: 1 1 0%;
+    z-index: 2;
+    transition: border-left-color 200ms ease 0s;
+}
+
+
+.segment .segment-item .segment-item-input{
+    height: 0px;
+    width: 0px;
+    padding: 0;
+    position: absolute;
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 0;
+    
+}
+ 
+
+.segment .segment-item .segment-item-label{
+    border-radius: 0.25rem;
+    font-weight: 500;
+    font-size: var(--segment-font, 0.875rem);
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    padding: 0.3125rem 0.625rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    user-select: none;
+    color: rgb(73, 80, 87);
+    transition: color 200ms ease 0s;
+}
+
+.segment .segment-item .segment-item-label[data-disabled], 
+.segment .segment-item .segment-item-label[data-disabled]:hover {
+    color: rgb(173, 181, 189);
+    cursor: not-allowed;
+}

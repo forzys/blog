@@ -1,0 +1,108 @@
+
+
+
+.input-wrap{
+    position: relative;
+    overflow: hidden;
+}
+
+.input-wrap[data-disabled]{
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.input-wrap[data-disabled] > *{
+    user-select: none;
+    pointer-events: none;
+}
+
+.input-input{
+    height: 2.25rem; 
+    line-height: calc(2.25rem - 0.125rem);
+    appearance: none;
+    resize: none;
+    box-sizing: border-box;
+    font-size: 0.875rem;
+    width: 100%;
+    color: rgba(0,0,0,0.85);
+    display: block;
+    text-align: left;
+    border: 0.0625rem solid #ced4da;
+    background-color: #fff;
+    transition: all 100ms ease;
+    min-height: 2.25rem;
+    padding-left: calc(2.25rem / 3);
+    padding-right: calc(2.25rem / 3);
+    border-radius: 0.25rem; 
+
+    overflow: hidden;
+
+
+}
+
+.input-input[data-borderless]{
+    border: 0.0625rem solid transparent;
+}
+.input-input[data-borderless]:focus,
+.input-input[data-borderless]:focus-within{
+    outline: none;
+    border-color: transparent;
+}
+
+.input-input[data-before] {
+    padding-left: 2.25rem;
+}
+.input-input[data-after] {
+    padding-right: 2.25rem;
+}
+
+.input-input:focus, 
+.input-input:focus-within {
+    outline: none;
+    border-color: #228be6;
+}
+
+.input-before{
+    position: absolute;
+    left: 1px;
+    height: calc(100% - 2px);
+    /* top: 0;
+    bottom: 0; */
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.25rem;
+    width: auto;
+    color: #adb5bd;
+    overflow: hidden;
+
+    border-top-left-radius: 0.2rem;
+    border-bottom-left-radius: 0.2rem;
+}
+
+.input-after{
+    position: absolute;
+    /* top: 0;
+    bottom: 0; */
+    top: 50%;
+    right: 1px;
+    height: calc(100% - 2px);
+    top: 50%;
+    transform: translateY(-50%);
+    min-width: 2.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto; 
+    color: rgba(0,0,0,0.65);
+    overflow: hidden;
+ 
+    border-top-right-radius: 0.2rem;
+    border-bottom-right-radius: 0.2rem;
+
+}
+
+
+

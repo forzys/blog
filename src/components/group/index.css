@@ -1,0 +1,13 @@
+
+
+
+
+.group{ 
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: row wrap;
+    box-align: center;
+    align-items: center; 
+    justify-content: flex-start;
+    gap: 1rem;
+}

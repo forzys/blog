@@ -1,0 +1,18 @@
+
+
+
+
+
+.tooltip{
+    background-color: rgb(33, 37, 41);
+    color: rgb(255, 255, 255);
+    line-height: 1.55;
+    font-size: 0.875rem;
+    border-radius: 0.25rem;
+    padding: calc(0.3125rem) 0.625rem;
+    position: absolute;
+    white-space: nowrap;
+    pointer-events: none;
+    width: auto;
+    opacity: 0;
+}

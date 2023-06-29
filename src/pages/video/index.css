@@ -1,0 +1,39 @@
+
+
+.btn-search{ 
+    width: 58px;
+    background-color: var(--btn-primary-color);
+    color: #fff;
+}
+
+.tips{
+    margin-left: 12px;
+}
+
+.error{
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--error-color);
+}
+
+.success{
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--error-color);
+}
+
+.input{
+    width: 80%;
+}
+
+/* @media (max-width: 30rem){
+    body, body.mobile.two-columns {
+        font-size: 60%;
+    }
+} */
+@media screen and (max-width: 900px){
+    .input{
+        width: 100%;
+    }
+}
+ 
