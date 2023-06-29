@@ -6,15 +6,15 @@ on:
     types: [opened, edited]
   issue_comment:
     types: [created, edited]
-  push:
-    branches:
-      - main
-    paths:
-      - main.py
-      - main.js
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - main.py
+  #     - main.js
 
 env:
-  GITHUB_NAME: for2me
+  GITHUB_NAME: forzys
   GITHUB_REPO: blog
   GITHUB_DIST: archive
   GITHUB_EMAIL: zys@outlook.in
@@ -58,10 +58,11 @@ jobs:
         run: |
           git config --local user.email "${{ env.GITHUB_EMAIL }}"
           git config --local user.name "${{ env.GITHUB_NAME }}"
+          git pull origin --rebase
           git add README.md backup/* 
           git commit -a -m 'update new blog' || echo "nothing to commit"
           git push || echo "nothing to push"
-    
+  
   build:
     name: Build 
     runs-on: ubuntu-latest
@@ -71,12 +72,13 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install and Run
-        run: yarn && node main.js 
+        run:  yarn && node main.js 
 
       - name: Push Md
         run: |
           git config --local user.email "${{ env.GITHUB_EMAIL }}"
           git config --local user.name "${{ env.GITHUB_NAME }}"
+          git pull origin --rebase
           git add archive/*.md archive/*.json
           git commit -a -m 'update archive' || echo "nothing to commit"
           git push || echo "nothing to push"

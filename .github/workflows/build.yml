@@ -1,0 +1,30 @@
+name: Build Docs
+
+on:
+  push:
+    branches:
+      - main 
+
+env:
+  GITHUB_NAME: forzys
+  GITHUB_EMAIL: zys@outlook.in
+
+jobs:
+  build: 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Dependencies
+        run:  yarn
+
+      - name: Build
+        run:  yarn build
+
+      - name: Push Docs
+        run: |
+          git config --local user.email "${{ env.GITHUB_EMAIL }}"
+          git config --local user.name "${{ env.GITHUB_NAME }}"
+          git pull origin --rebase
+          git add docs/* 
+          git commit -a -m 'build docs' || echo "nothing to commit"
+          git push || echo "nothing to push"
