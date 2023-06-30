@@ -7,8 +7,10 @@ on:
   issue_comment:
     types: [created, edited]
   push:
-	    paths:
-	      - 'external/*.md'
+    branches:
+      - main
+	  paths:
+	    - 'external/*.md'
   # push:
   #   branches:
   #     - main
