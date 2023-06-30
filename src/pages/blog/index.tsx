@@ -1,41 +1,128 @@
+// @ts-nocheck
 import Card from "@/components/card";
 import { memo, useEffect, useMemo } from "react"; 
-import Markdown from '@/application/Markdown'
+// import showdown from '@/application/showdown' 
+import Markdown from '@/application/Markdown' 
 import { useUpdate } from "@/hooks/useUpdate";
 import { dateFormat } from "@/common/common"; 
 import { useFetch, apis } from '@/request/index'
 import Button from "@/components/button";
 import Spining from "@/components/spining";
+ 
+var hmd =  `
+# h1 标题
+## h2 标题
+### h3 标题
+#### h4 标题
+##### h5 标题
+###### h6 标题
 
-var hmd = `
+
+## 水平线
+
+___
+
+---
+
+***
 
 
-<!-- config: { "id": "diary-2304", "title": "工作日记-23年4月", "created_at": "2023-04-30T23:59:59Z" } --> 
-<!-- intro: 迁移记录的23年4月godigitalchina工作日记 -->
-<!-- gitblog: https://github.com/yihong0618/gitblog -->
+## 文本样式
 
-## ABCD
 
-[中国色](http://zhongguose.com/#beiguahuang)
+**这是加粗的文字**  
 
-  
-<marquee> 表格 标签 </marquee>  
+*这是倾斜的文字*  
 
-|  表头   | 表头  | 表头 | 表头 |
-| :---  | ---:  | :--: | ---- |
-| 单元格  | 单元格 |单元格|单元格|
-| 单元格  | 单元格 |单元格|单元格|
+***这是斜体加粗的文字***  
 
->生活很困难
-但仍要继续下去
-加油朋友  
+~~这是加删除线的文字~~  
 
-加油朋友
 
-<kbd> Ctrl </kbd>
+>这是引用的内容  
 
+>>这是引用的内容  
+
+>>>>>>>>>>这是引用的内容  
+
+
+![blockchain](https://avatars.githubusercontent.com/u/31484328?v=4 "区块链")
+
+
+## 列表
+
+无序
+
++ Create a list by starting a line with \`+\`, \`-\`, or \`*\`
++ Sub-lists are made by indenting 2 spaces:
+  - Marker character change forces new list start:   
+       * Ac tristique libero volutpat at
+       + Facilisis in pretium nisl aliquet
+       - Nulla volutpat aliquam velit
++ Very easy!
+
+有序
+
+1. Lorem ipsum dolor sit amet
+2. Consectetur adipiscing elit
+3. Integer molestie lorem at massa
+
+---
+1. You can use sequential numbers...
+1. ...or keep all the numbers as \`1.\`
+
+Start numbering with offset:
+
+57. foo
+1. bar
+
+
+## 代码
+
+Inline \`code\`
+
+Indented code
+
+    // Some comments
+    line 1 of code
+    line 2 of code
+    line 3 of code
+
+
+Block code "fences"
+
+\`\`\`
+Sample text here...
+\`\`\`
+
+Syntax highlighting
+
+\`\`\`js
+var foo = function (bar) {
+  return bar++;
+};
+
+console.log(foo(5));
+\`\`\`
+
+\`\`\`css
+body {
+    background-color: #f1f1f1;
+}
+\`\`\`
+
+姓名|技能|排行
+--|:--:|--:
+刘备|哭|大哥
+关羽|打|二哥
+张飞|骂|三弟
 
 `
+
+let mmd = '_this_ is **easy** to `use`.';
+
+// console.clear(); 
+
 
 export default memo((props)=>{
 
@@ -74,9 +161,10 @@ export default memo((props)=>{
         //     return text
         // })
 
-        // console.log(mdc, )
-
-        setState({ mdc : mdc.makeHtml(hmd) })
+        // console.log(mdc, )  
+        setState({ mdc : mdc.makeHtml(hmd) }) 
+        // var sd = showdown.Converter()
+        // setState({ mdc2 : sd.makeHtml(hmd) })
    
     },[])
 
@@ -107,12 +195,12 @@ export default memo((props)=>{
     
     return (
         <div className="main">
-            <Card> 
+            <Card bodyStyle={{overflow:'auto'}}> 
                 {
                     state.mdc && (
                         <>
                             <Button onClick={onBack}>Back</Button>
-                            <div dangerouslySetInnerHTML={{__html: state.mdc }} />
+                            <div dangerouslySetInnerHTML={{__html: state.mdc }} /> 
                         </> 
                     )
                 }
