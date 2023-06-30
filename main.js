@@ -14,6 +14,19 @@ function jsonFormat(text='', init={}) {
     }
 }
 
+
+function onMarkdownInfo(text='') {
+    const [, title] = text?.match(new RegExp('<!-- title: (.*?) -->')) || []
+    const [, update] = text.match(new RegExp('<!-- update: (.*?) -->')) || []
+    const [, intro] = text?.match(new RegExp('<!-- intro: (.*?) -->')) || []  
+ 
+    return {
+        id: title,
+        title,
+        intro,
+        created_at:update,
+    }
+}
  
 function onArchive(issues, space){
     let externalDir = path.join(space, 'external'); 
@@ -24,12 +37,12 @@ function onArchive(issues, space){
     const files = fs.readdirSync(externalDir);  
     const exts = files.map(name=>{
         const body = fs.readFileSync(externalDir + '/' + name).toString();
-        const [, config] = body?.match(new RegExp('<!-- config: (.*?) -->')) || []
-        
+        const info = onMarkdownInfo(body)
+       
         return {
             title: name.replace('.md',''),
             body,
-            ...jsonFormat(config)
+            ...info,
         }
     });
 
@@ -84,20 +97,16 @@ async function main() {
         issues.forEach(ele=>{ 
             let title_name = [ele?.number, ele?.title.replace(/ /g,'_')].filter(Boolean).join('-')
             let file = path.join(issuesDir, title_name + '.md');
-            
-            // 获取 markdown 文件 intro
-            const [, title] = ele?.body?.match(new RegExp('<!-- title: (.*?) -->')) || []
-            const [, update] = ele?.body?.match(new RegExp('<!-- update: (.*?) -->')) || []
-            const [, intro] = ele?.body?.match(new RegExp('<!-- intro: (.*?) -->')) || [] 
+             
 
             info.data.push({
                 id:     ele?.id,
-                title:  ele?.title || title,
+                title:  ele?.title,
                 author: ele?.user?.login || owner,
                 labels: ele?.labels?.map(i=>i?.name),
-                updated:ele?.created_at || update,
+                updated:ele?.created_at,
                 name :  title_name + '.md',
-                intro:  intro, 
+                intro:  other.intro, 
                 issues_url: ele?.html_url,
             });
 
