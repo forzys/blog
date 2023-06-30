@@ -18,6 +18,9 @@
 [custom-markdown](https://github.com/forzys/custom-markdown)
 
 ---
+update:
+
+添加hook以支持code语法高亮效果
 
 Todo:
 
