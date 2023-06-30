@@ -1,3 +1,6 @@
+@import url(./styles/normalize.css);
+@import url(./styles/code.css);
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5; 
@@ -22,14 +25,14 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
 
 body {
   margin: 0;
-  display: flex;
-  /* place-items: center; */
+  display: flex; 
   min-width: 320px;
   min-height: 100vh;
 }
@@ -57,14 +60,14 @@ button, input {
   transition: border-color 0.25s;
 }
 
-button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring {
+/* button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring {
   outline: 0.0625rem dotted ButtonText;
 }
 
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
+} */
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -78,6 +81,8 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+
 
  
 ::-webkit-scrollbar{
