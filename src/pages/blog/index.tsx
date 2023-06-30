@@ -1,87 +1,86 @@
 // @ts-nocheck
 import Card from "@/components/card";
-import { memo, useEffect, useMemo } from "react"; 
-// import showdown from '@/application/showdown' 
-import Markdown from '@/application/Markdown' 
+import { memo, useEffect, useMemo } from "react";  
+import Markdown from '@/application/Markdown'
+import prism from '@/application/prism'
 import { useUpdate } from "@/hooks/useUpdate";
 import { dateFormat } from "@/common/common"; 
 import { useFetch, apis } from '@/request/index'
 import Button from "@/components/button";
 import Spining from "@/components/spining";
+
+import styles from './index.module.css'
  
 var hmd =  `
-# h1 标题
-## h2 标题
-### h3 标题
-#### h4 标题
-##### h5 标题
-###### h6 标题
 
+<!-- title: Custom Markdown 基础语法支持  -->
+<!-- intro: Markdown 基础语法 用于展示 Custom Markdown 的基础语法支持情况  --> 
+ 
+## 标题
 
-## 水平线
+# h1 标题  
+## h2 标题   <small> <sub>(h2添加了特殊样式) </sub></small> 
+### h3 标题  
+#### h4 标题  
+##### h5 标题  
+###### h6 标题  
 
-___
-
----
-
-***
-
-
+ 
 ## 文本样式
 
-
-**这是加粗的文字**  
-
-*这是倾斜的文字*  
-
+*这是倾斜的文字*    
+**这是加粗的文字**   
 ***这是斜体加粗的文字***  
-
 ~~这是加删除线的文字~~  
 
 
+## 引用
+
 >这是引用的内容  
+>>这是二级引用的内容   
 
->>这是引用的内容  
+## 分割线 
 
->>>>>>>>>>这是引用的内容  
+---
+*** 
 
+## 图片
 
 ![blockchain](https://avatars.githubusercontent.com/u/31484328?v=4 "区块链")
+<!-- <img src="https://avatars.githubusercontent.com/u/31484328?v=4" alt="区块链" /> -->
+
+
+## 超链接  
+
+[Custom Markdown](https://github.com/forzys/custom-markdown "超链接")
 
 
 ## 列表
 
-无序
+1. 无序列表
+    + Create a list by starting a line with \`+\`, \`-\`, or \`*\`
+    + Sub-lists are made by indenting 2 spaces:
+    - Marker character change forces new list start:   
+        * Create with \`*\`
+        + Create with \`+\`
+        -  Create with \`-\`
+    + Very easy!
 
-+ Create a list by starting a line with \`+\`, \`-\`, or \`*\`
-+ Sub-lists are made by indenting 2 spaces:
-  - Marker character change forces new list start:   
-       * Ac tristique libero volutpat at
-       + Facilisis in pretium nisl aliquet
-       - Nulla volutpat aliquam velit
-+ Very easy!
+2. 有序列表
+    1. List item marker
+    2. List item marker
+    3. List item marker
 
-有序
-
-1. Lorem ipsum dolor sit amet
-2. Consectetur adipiscing elit
-3. Integer molestie lorem at massa
-
----
-1. You can use sequential numbers...
-1. ...or keep all the numbers as \`1.\`
-
-Start numbering with offset:
-
-57. foo
-1. bar
+3. 自定义列表开始序号  
+    57. List item marker
+    1. List item marker
 
 
 ## 代码
 
-Inline \`code\`
+1.Inline \`code\`  
 
-Indented code
+2.Indented code
 
     // Some comments
     line 1 of code
@@ -89,19 +88,18 @@ Indented code
     line 3 of code
 
 
-Block code "fences"
+3.Block code "fences"
 
 \`\`\`
 Sample text here...
 \`\`\`
 
-Syntax highlighting
+4.Syntax highlighting
 
 \`\`\`js
 var foo = function (bar) {
   return bar++;
-};
-
+}; 
 console.log(foo(5));
 \`\`\`
 
@@ -110,6 +108,8 @@ body {
     background-color: #f1f1f1;
 }
 \`\`\`
+
+## 表格
 
 姓名|技能|排行
 --|:--:|--:
@@ -156,16 +156,14 @@ export default memo((props)=>{
         // mdc.hooks.set('preConversion', (text:any)=>{
              
         // });
-        // mdc.hooks.set('postConversion', (text:any)=>{
-        //     console.log({ text })
-        //     return text
-        // })
+        mdc.hooks.set('postCodeGamut', (text:any, language:any)=>{
+            console.log({ text })
+            return prism.highlight(text, prism?.languages?.[language || 'js']) || text
+        })
 
-        // console.log(mdc, )  
+        console.log({ prism})  
         setState({ mdc : mdc.makeHtml(hmd) }) 
-        // var sd = showdown.Converter()
-        // setState({ mdc2 : sd.makeHtml(hmd) })
-   
+     
     },[])
 
     const onSkip = (info:any) =>{
@@ -195,12 +193,11 @@ export default memo((props)=>{
     
     return (
         <div className="main">
-            <Card bodyStyle={{overflow:'auto'}}> 
+            {/* <Card bodyStyle={{overflow:'auto'}}>  */}
                 {
                     state.mdc && (
-                        <>
-                            <Button onClick={onBack}>Back</Button>
-                            <div dangerouslySetInnerHTML={{__html: state.mdc }} /> 
+                        <> 
+                            <div className={styles.markdown} dangerouslySetInnerHTML={{__html: state.mdc }} />
                         </> 
                     )
                 }
@@ -224,7 +221,7 @@ export default memo((props)=>{
                 </Spining>
 
                 
-            </Card>
+            {/* </Card> */}
         </div>
     )
 
