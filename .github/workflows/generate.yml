@@ -9,14 +9,8 @@ on:
   push:
     branches:
       - main
-	  paths:
-	    - 'external/*.md'
-  # push:
-  #   branches:
-  #     - main
-  #   paths:
-  #     - main.py
-  #     - main.js
+    paths:
+       - 'external/*.md'
 
 env:
   GITHUB_NAME: forzys
