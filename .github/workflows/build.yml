@@ -17,7 +17,7 @@ jobs:
       - name: Install Dependencies
         run:  yarn
 
-      - name: Build
+      - name: Build Docs
         run:  yarn build
 
       - name: Push Docs

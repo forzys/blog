@@ -60,10 +60,11 @@ jobs:
           git config --local user.name "${{ env.GITHUB_NAME }}" 
           git add README.md backup/* 
           git commit -a -m 'update new blog' || echo "nothing to commit"
+          git pull origin --rebase
           git push || echo "nothing to push"
   
   build:
-    name: Build 
+    name: Backup Archive 
     runs-on: ubuntu-latest
     steps:
       # - uses: actions/checkout@v1
@@ -79,4 +80,5 @@ jobs:
           git config --local user.name "${{ env.GITHUB_NAME }}" 
           git add archive/*.md archive/*.json
           git commit -a -m 'update archive' || echo "nothing to commit" 
+          git pull origin --rebase
           git push || echo "nothing to push"
