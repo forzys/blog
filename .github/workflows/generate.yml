@@ -57,8 +57,7 @@ jobs:
       - name: Push README
         run: |
           git config --local user.email "${{ env.GITHUB_EMAIL }}"
-          git config --local user.name "${{ env.GITHUB_NAME }}"
-          git pull origin --rebase
+          git config --local user.name "${{ env.GITHUB_NAME }}" 
           git add README.md backup/* 
           git commit -a -m 'update new blog' || echo "nothing to commit"
           git push || echo "nothing to push"
@@ -77,8 +76,7 @@ jobs:
       - name: Push Md
         run: |
           git config --local user.email "${{ env.GITHUB_EMAIL }}"
-          git config --local user.name "${{ env.GITHUB_NAME }}"
-          git pull origin --rebase
+          git config --local user.name "${{ env.GITHUB_NAME }}" 
           git add archive/*.md archive/*.json
-          git commit -a -m 'update archive' || echo "nothing to commit"
+          git commit -a -m 'update archive' || echo "nothing to commit" 
           git push || echo "nothing to push"
