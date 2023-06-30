@@ -144,6 +144,12 @@
 
             text = pluginHooks.preConversion(text);
 
+            text = _ParseCodeBlock(text);
+            // text = _DoCodeBlocks(text);
+            text = _Strikethrough(text);
+            // text = _DoCodeSpans(text);
+           
+           
             // attacklab: Replace ~ with ~T
             // This lets us use tilde as an escape char to avoid md5 hashes
             // The choice of character is arbitray; anything that isn't
@@ -1454,8 +1460,31 @@
  
             return text 
         }
- 
 
+        function _Strikethrough(text){
+            function parseInside (wm, txt) { 
+                return '<del>' + txt + '</del>';
+              }
+              text = text.replace(/(?:~){2}([\s\S]+?)(?:~){2}/g, parseInside);
+              return text;
+        }
+ 
+        function _ParseCodeBlock(text) { 
+            const regex = /```(\w*)\n([\s\S]*?)\n```/g;
+            const matches = text.match(regex);
+            const codeBlocks = matches ? matches.map(match => ({
+                language: match.replace(/```(\w*)\n[\s\S]*/, '$1').trim(),
+                code: match.replace(/```(\w*)\n|\n```/g, '').trim()
+              })) : []; 
+               
+            let htmlText = text;
+            for (let i = 0; i < codeBlocks.length; i++) {
+              const { language, code } = codeBlocks[i];
+              const codeHTML = `<pre><code class="${language}">${code}</code></pre>`;
+              htmlText = htmlText.replace(matches[i], codeHTML);
+            }
+            return htmlText;
+        }
 
     }; // end of the Markdown.Converter constructor
 
