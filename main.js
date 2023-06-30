@@ -86,14 +86,16 @@ async function main() {
             let file = path.join(issuesDir, title_name + '.md');
             
             // 获取 markdown 文件 intro
-            const [, intro] = ele?.body?.match(new RegExp('<!-- intro: (.*?) -->')) || []
+            const [, title] = ele?.body?.match(new RegExp('<!-- title: (.*?) -->')) || []
+            const [, update] = ele?.body?.match(new RegExp('<!-- update: (.*?) -->')) || []
+            const [, intro] = ele?.body?.match(new RegExp('<!-- intro: (.*?) -->')) || [] 
 
             info.data.push({
                 id:     ele?.id,
-                title:  ele?.title,
+                title:  ele?.title || title,
                 author: ele?.user?.login || owner,
                 labels: ele?.labels?.map(i=>i?.name),
-                updated:ele?.created_at,
+                updated:ele?.created_at || update,
                 name :  title_name + '.md',
                 intro:  intro, 
                 issues_url: ele?.html_url,
