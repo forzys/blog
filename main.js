@@ -106,7 +106,7 @@ async function main() {
                 labels: ele?.labels?.map(i=>i?.name),
                 updated:ele?.created_at,
                 name :  title_name + '.md',
-                intro:  other.intro, 
+                intro:  ele.intro,
                 issues_url: ele?.html_url,
             });
 
