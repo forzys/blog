@@ -1,6 +1,5 @@
  
-<!-- intro: 发现一个十分小巧的Markdown解析库 但是十分古老 ， 不支持Table、对Code的支持也十分不友好，还发现一些bug等等
-所以动手添加了需要的一些功能  -->
+<!-- intro: 发现一个十分小巧的Markdown解析库 但是十分古老 ， 不支持Table、对Code的支持也十分不友好，还发现一些bug等等所以动手添加了需要的一些功能  -->
 
 ### Custom Markdown
 
