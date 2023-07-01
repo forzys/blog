@@ -67,13 +67,12 @@ export default () => {
 
     useEffect(()=>{
         let root = document.getElementById('root')
-        root?.classList.add('theme-root__init')
-
+        root?.classList.add('theme-root__init');
         const colors = ['--bg-0', '--bg-30', '--bg-60', '--bg-100']
   
         if (window.CSS) {
             colors?.forEach(color=>{
-                window.CSS.registerProperty({
+                window?.CSS?.registerProperty({
                     name: color,
                     syntax: '<color>',
                     inherits: false,
