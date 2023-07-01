@@ -48,12 +48,12 @@
 ## 列表
 
 1. 无序列表
-    + Create a list by starting a line with \`+\`, \`-\`, or \`*\`
+    + Create a list by starting a line with `+`, `-`, or `*`
     + Sub-lists are made by indenting 2 spaces:
     - Marker character change forces new list start:   
-        * Create with \`*\`
-        + Create with \`+\`
-        -  Create with \`-\`
+        * Create with `*`
+        + Create with `+`
+        -  Create with `-`
     + Very easy!
 
 2. 有序列表
