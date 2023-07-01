@@ -1523,24 +1523,40 @@ Markdown.Converter = function (OPTIONS) {
           return text;
     }
 
-    function _ParseCodeBlock(text) { 
-        const regex = /```(\w*)\n([\s\S]*?)\n```/g;
-        const matches = text.match(regex);
-        const codeBlocks = matches ? matches.map(match => ({
-            language: match.replace(/```(\w*)\n[\s\S]*/, '$1').trim(),
-            code: match.replace(/```(\w*)\n|\n```/g, '').trim()
-          })) : []; 
+    // function _ParseCodeBlock(text) { 
+    //     const regex = /```(\w*)\n([\s\S]*?)\n```/g;
+    //     const matches = text.match(regex);
+    //     const codeBlocks = matches ? matches.map(match => ({
+    //         language: match.replace(/```(\w*)\n[\s\S]*/, '$1').trim(),
+    //         code: match.replace(/```(\w*)\n|\n```/g, '').trim()
+    //       })) : []; 
            
-        let htmlText = text;
-        for (let i = 0; i < codeBlocks.length; i++) {
-          const { language, code } = codeBlocks[i];
-          let codeStr = pluginHooks.postCodeGamut(code, language);
-          let codeHTML = `<div class="code"><header></header><pre><code class="language-${language}">${codeStr}</code></pre></div>`;
-        //   codeHTML = pluginHooks.postCodeGamut(codeHTML, language);
+    //     let htmlText = text;
+    //     for (let i = 0; i < codeBlocks.length; i++) {
+    //       const { language, code } = codeBlocks[i];
+    //       let codeStr = pluginHooks.postCodeGamut(code, language);
+    //       let codeHTML = `<div class="code"><header></header><pre><code class="language-${language}">${codeStr}</code></pre></div>`;
+    //     //   codeHTML = pluginHooks.postCodeGamut(codeHTML, language);
 
-          htmlText = htmlText.replace(matches[i], codeHTML);
-        }
-        return htmlText;
+    //       htmlText = htmlText.replace(matches[i], codeHTML);
+    //     }
+    //     return htmlText;
+    // }
+
+    function _ParseCodeBlock(text) { 
+        // const regex = /```(\w+)?([\s\S]*?)```|\`\`\`([\s\S]*?)\`\`\`/g;
+        // const matches = text.match(regex);
+ 
+       
+        text = text.replace(/```(\w+)?([\s\S]*?)```|\`\`\`([\s\S]*?)\`\`\`/g,function(m1,m2,m3){
+            if(!/[\n\r]/.test(m3)){
+                return `\`${m3}\``
+            }
+            let codeStr = pluginHooks.postCodeGamut(m3, m2)
+            return `<div class="code"><header></header><pre><code class="language-${m2}">${codeStr}</code></pre></div>`
+        })
+    
+        return text;
     }
 
 }; // end of the Markdown.Converter constructor
