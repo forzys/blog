@@ -2,7 +2,9 @@
 
 import { useRef, useState } from "react";
 import { useMemoizedFn } from "./useMemoize";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,useParams } from 'react-router-dom'
+ 
+
 
 const depsAreSame = (oldDeps, deps) => { 
     if(oldDeps === deps) return true;
@@ -39,6 +41,7 @@ export const useCreation = (fn, deps)=> {
 
 export const useUpdate = (initialState)=> {
     const navigate = useNavigate()
+    const pathInfo = useParams()
     const [state, setState] = useState(initialState);
 
     const onForceUpdate = useMemoizedFn((...[partial, delay]) => {
@@ -52,7 +55,7 @@ export const useUpdate = (initialState)=> {
         })
     });
 
-    return [state, onForceUpdate, { navigate }];
+    return [state, onForceUpdate, { navigate, params:pathInfo }];
 }
 
 
