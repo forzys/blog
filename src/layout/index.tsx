@@ -30,18 +30,21 @@ export default memo((props: any)=>{
         <>
    
          <header className={styles.header}> 
-            <Segment 
-                fontSize="0.8rem"
-                init={init}
-                options={[
-                    {label: 'Blog',     value: 'blog'},
-                    {label: 'Video',     value: 'video'},
-                    {label: 'Component',value: 'component'},
-                    {label: 'Calendar',  value: 'calendar'},
-                    {label: 'Theme',  value:'theme'},
-                ]}
-                onChange={onSegmentChange}
-            />
+            <div className={styles.inner}>
+                <Segment 
+                    fontSize="0.8rem"
+                    init={init}
+                    options={[
+                        {label: 'Blog',     value: 'blog'},
+                        {label: 'Video',     value: 'video'},
+                        {label: 'Component',value: 'component'},
+                        {label: 'Calendar',  value: 'calendar'},
+                        {label: 'Theme',  value:'theme'},
+                    ]}
+                    onChange={onSegmentChange}
+                />
+            </div>
+           
         </header> 
         
         <main className={styles.main}>
