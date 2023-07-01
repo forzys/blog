@@ -21,10 +21,10 @@ function onMarkdownInfo(text='') {
     const [, intro] = text?.match(new RegExp('<!-- intro: (.*?) -->')) || []  
  
     return {
-        id: title,
         title,
         intro,
         created_at:update,
+        id: title?.title?.replace(/ /g,'_'),
     }
 }
  
