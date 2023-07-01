@@ -33,19 +33,10 @@ export default memo((props)=>{
 
         return converter 
     },[])
-   
- 
-  
-
+    
  
     useEffect(()=>{
-        const path = apis.blogs.replace('$blog', state.pre);
-        // const path_0 = apis.blogs.replace('$blog', state.pre + '_0');
  
-        // https.get(path).then((res)=>{ 
-        //     console.log('pages:',{ res })
-        //     setState({ pages: res.data })
-        // }); 
 
         if(!params.id){
             const blog = apis.blogs.replace('$blog', state.pre);
