@@ -24,7 +24,7 @@ export default memo((props: any)=>{
         navigate('/' + item.value)
     });
    
-    const init = useMemo(()=>location.pathname.replace('/', ''),[])
+    const init = useMemo(()=>location?.pathname?.replace('/', ''),[])
 
     return (
         <>
@@ -54,13 +54,9 @@ export default memo((props: any)=>{
             </div>
             <div className={styles.item} style={{gap: 12}}>
               <a>Copyright@2023</a>
-              <a className={styles.github} target='_blank' href="https://github.com/forzys/blog"> 
-                
-              </a>
+              <a className={styles.github} target='_blank' href="https://github.com/forzys/blog" />  
             </div>
-            <div className={styles.item}>
-           
-            </div>
+            <div className={styles.item} />
         </footer>
  
         </>
