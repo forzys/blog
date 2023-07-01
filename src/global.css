@@ -186,6 +186,8 @@ body.dark-mode {
   max-width: 900px; 
   margin: 0 auto;
   position: relative;
+  background-color: #fff;
+  padding: 24px;
 }
 
 
