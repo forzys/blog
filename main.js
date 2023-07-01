@@ -105,7 +105,7 @@ async function main() {
                 author: ele?.user?.login || owner,
                 labels: ele?.labels?.map(i=>i?.name),
                 updated:item?.created_at,
-                name :  title_name + '.md',
+                name :  title_name,
                 intro:  item.intro || item.created_at,
                 issues_url: item?.html_url,
             });
