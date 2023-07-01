@@ -10,7 +10,7 @@ env:
   GITHUB_EMAIL: zys@outlook.in
 
 jobs:
-  build: 
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -20,11 +20,23 @@ jobs:
       - name: Build Docs
         run:  yarn build
 
-      - name: Push Docs
-        run: |
-          git config --local user.email "${{ env.GITHUB_EMAIL }}"
-          git config --local user.name "${{ env.GITHUB_NAME }}" 
-          git add docs/* 
-          git commit -a -m 'build docs' || echo "nothing to commit"
-          git pull origin --rebase
-          git push || echo "nothing to push"
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          # Upload entire repository
+          path: "docs"
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+
+      # - name: Push Docs
+      #   run: |
+      #     git config --local user.email "${{ env.GITHUB_EMAIL }}"
+      #     git config --local user.name "${{ env.GITHUB_NAME }}" 
+      #     git add docs/* 
+      #     git commit -a -m 'build docs' || echo "nothing to commit"
+      #     git pull origin --rebase
+      #     git push || echo "nothing to push"
+    
