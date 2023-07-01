@@ -190,6 +190,7 @@ body.dark-mode {
 .main{
   width: 100%;
   max-width: 900px; 
+  min-height: 80vh;
   margin: 0 auto;
   position: relative;
   background-color: #fff;
