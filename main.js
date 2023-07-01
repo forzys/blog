@@ -18,16 +18,15 @@ function jsonFormat(text='', init={}) {
 function onMarkdownInfo(ele = {}) {
     const {body='', ...other} = ele
      
-    let title = body?.replace(new RegExp('<!-- title: (.*?) -->'),(m1,m2)=>m2 || other.title)
-    let update = body?.replace(new RegExp('<!-- update: (.*?) -->'),(m1,m2)=>m2 || other.created_at)
-    let intro = body?.replace(new RegExp('<!-- intro: (.*?) -->'),(m1,m2)=>m2 || other.intro)
-
+    const info = {}
+    body?.replace(new RegExp('<!-- title: (.*?) -->'),(m1,m2)=>info.title = m2 || other.title)
+    body?.replace(new RegExp('<!-- update: (.*?) -->'),(m1,m2)=>info.created_at = m2 || other.created_at)
+    body?.replace(new RegExp('<!-- intro: (.*?) -->'),(m1,m2)=>info.intro = m2 || other.intro)
+ 
     return {
-        ...other,
-        title,
-        intro,
-        created_at:update,
-        id: other.id || title?.replace(/ /g,'_'),
+        ...other, 
+        ...info,
+        id: other.id || info.title?.replace(/ /g,'_'),
     }
 }
  
