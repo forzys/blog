@@ -5,14 +5,14 @@
 
 > rollup是一款小巧的javascript模块打包工具，通过rollup打包后的代码，体积较小，而且没有冗余的代码
 > rollup提供了五种选项:  
-1. AMD: 浏览器端的模块规范, 可通过 RequireJS 可加载
-2. CommonJS: Node 默认的模块规范, 可通过 Webpack 加载 
-3. ESM: ES2015 Module 规范, 可用 Webpack, Rollup 加载
-4. IIFE: 自执行函数, 可通过 ```<script>``` 标签加载
-5. UMD: 兼容 IIFE, AMD, CJS 三种模块规范
+1. AMD: 浏览器端的模块规范, 可通过 RequireJS 可加载  
+2. CommonJS: Node 默认的模块规范, 可通过 Webpack 加载  
+3. ESM: ES2015 Module 规范, 可用 Webpack, Rollup 加载  
+4. IIFE: 自执行函数, 可通过 ```<script>``` 标签加载  
+5. UMD: 兼容 IIFE, AMD, CJS 三种模块规范  
 
 
-使用配置文件 ***rollup.config.js***
+使用配置文件 ***rollup.config.js***  
 ```
 export default {
     input: 'src/main.js',
@@ -26,6 +26,7 @@ export default {
     ]
 }
 ```
+
 > 执行 rollup -c rollup.config.js 启动配置项;
 
 ### rollup and uglify 使用记录
