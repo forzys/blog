@@ -11,7 +11,7 @@
 修改 [pagedown](https://github.com/ujifgc/pagedown) 添加table支持 添加删除线 以及代码块等。
 适合个人博客及其他简单的Markdown渲染 。
 十分小巧 build后只有10k左右 gzip压缩后只有4k大小 没有其他复杂的功能 提供pluginHooks可自定义渲染内容
- 
+
 
 [custom-markdown](https://github.com/forzys/custom-markdown)
 
