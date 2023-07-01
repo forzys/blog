@@ -41,7 +41,10 @@ pre[class*="language-"] {
 	white-space: normal;
 }
 
- 
+.code > pre{
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
 
 .code > header{
 	position: relative;
