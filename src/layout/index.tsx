@@ -49,14 +49,12 @@ export default memo((props: any)=>{
         </main>
        
         <footer className={styles.footer}>
-            <div className={styles.item}>
-                <a href="https://beian.miit.gov.cn/">豫ICP备2023012795号</a>
-            </div>
-            <div className={styles.item} style={{gap: 12}}>
-              <a>Copyright@2023</a>
+            <a href="https://beian.miit.gov.cn/">豫ICP备2023012795号</a>
+            <span className={styles.item}> 
+              
               <a className={styles.github} target='_blank' href="https://github.com/forzys/blog" />  
-            </div>
-            <div className={styles.item} />
+              <a>Copyright@2023 </a>
+            </span> 
         </footer>
  
         </>
