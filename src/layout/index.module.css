@@ -1,16 +1,28 @@
 
 
 .header{
+    --height-outer: 10vh;
+    --height-inner: 5vh;
+
     width: 100%; 
     display: flex;
     justify-content: center; 
     align-items: center;
-    height: 10vh;
+    /* height: 10vh; */
 
     position: sticky;
-    top: 0;
-}
+    height: var(--height-outer);
+    top: calc(var(--height-inner) - var(--height-outer));
+    z-index: 1;
+} 
 
+.header .inner{
+    display: flex;
+    /* line-height: var(--height-inner); */
+    height: var(--height-inner);
+    position: sticky;
+    top: 0; 
+}
 
 
 .main{

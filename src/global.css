@@ -4,11 +4,17 @@ body{
   --bg-0:#98eecc;
   --bg-30:#d0f5be;
   --bg-60:#fbffdc; 
-  --bg-100:#a4907c;
-  background: linear-gradient(180deg, var(--bg-0) 0%, var(--bg-30) 30%, var(--bg-60) 60%, var(--bg-100) 100%);
-  overflow: hidden;
+  --bg-100:#a4907c; 
+ 
+  background-image: linear-gradient(180deg, var(--bg-0) 0%, var(--bg-30) 30%, var(--bg-60) 60%, var(--bg-100) 100%);
+  overflow: hidden; 
+  transition: --bg-0 .5s, --bg-30 .5s, --bg-60 .5s, --bg-100 .5s;
+   
   /* background: radial-gradient(circle at 60% 90%,#2e67a1,transparent 60%),radial-gradient(circle at 20px 20px,rgba(46,103,161,.8),transparent 25%),#182336; */
 }
+
+ 
+
 
 #root {
   position: relative;
