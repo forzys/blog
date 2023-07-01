@@ -1,1 +1,0 @@
-import{r as o,b as a,j as t,a as r}from"./index-0fb68538.js";const n=o.memo(s=>{const e=a();return console.error(e,s),t("div",{id:"error-page",children:[r("h1",{children:"Oops!"}),r("p",{children:"Sorry, an unexpected error has occurred."}),r("p",{children:r("i",{children:(e==null?void 0:e.statusText)||(e==null?void 0:e.message)})})]})});export{n as default};
