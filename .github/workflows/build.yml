@@ -2,10 +2,8 @@ name: Build Docs
 
 on:
   push:
-    branches:
-      - main 
-    paths: 
-      - 'src/**'
+    branches: ["main"]
+    paths: ["src/**"]
 
 env:
   GITHUB_NAME: forzys
