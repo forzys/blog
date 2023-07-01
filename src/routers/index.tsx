@@ -72,7 +72,7 @@ export default () => {
   
         if (window.CSS) {
             colors?.forEach(color=>{
-                window?.CSS?.registerProperty({
+                (window?.CSS as any)?.registerProperty({
                     name: color,
                     syntax: '<color>',
                     inherits: false,
