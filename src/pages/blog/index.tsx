@@ -27,10 +27,9 @@ export default memo((props)=>{
     const converter = useMemo(()=> {
         const converter = new Markdown.Converter()
         converter.hooks.set('postCodeGamut', (text:any, language:any)=>{
-            // console.log({ text })
-            return prism.highlight(text, prism?.languages?.[language || 'js']) || text
+            const grammar = prism?.languages?.[language] || prism?.languages?.js
+            return prism.highlight(text, grammar, language|| 'js') || text
         })
-
         return converter 
     },[])
     
