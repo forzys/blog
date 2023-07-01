@@ -15,16 +15,19 @@ function jsonFormat(text='', init={}) {
 }
 
 
-function onMarkdownInfo(text='') {
-    const [, title] = text?.match(new RegExp('<!-- title: (.*?) -->')) || []
-    const [, update] = text.match(new RegExp('<!-- update: (.*?) -->')) || []
-    const [, intro] = text?.match(new RegExp('<!-- intro: (.*?) -->')) || []  
- 
+function onMarkdownInfo(ele = {}) {
+    const {body='', ...other} = ele
+     
+    let title = body?.replace(new RegExp('<!-- title: (.*?) -->'),(m1,m2)=>m2 || other.title)
+    let update = body?.replace(new RegExp('<!-- update: (.*?) -->'),(m1,m2)=>m2 || other.created_at)
+    let intro = body?.replace(new RegExp('<!-- intro: (.*?) -->'),(m1,m2)=>m2 || other.intro)
+
     return {
+        ...other,
         title,
         intro,
         created_at:update,
-        id: title?.title?.replace(/ /g,'_'),
+        id: other.id || title?.replace(/ /g,'_'),
     }
 }
  
@@ -37,12 +40,10 @@ function onArchive(issues, space){
     const files = fs.readdirSync(externalDir);  
     const exts = files.map(name=>{
         const body = fs.readFileSync(externalDir + '/' + name).toString();
-        const info = onMarkdownInfo(body)
-       
+      
         return {
             title: name.replace('.md',''),
-            body,
-            ...info,
+            body, 
         }
     });
 
@@ -95,19 +96,19 @@ async function main() {
          * 2. 写入索引文件
          */
         issues.forEach(ele=>{ 
-            let title_name = [ele?.number, ele?.title.replace(/ /g,'_')].filter(Boolean).join('-')
+            let item = onMarkdownInfo(ele);
+            let title_name = [ele?.number, item?.title.replace(/ /g,'_')].filter(Boolean).join('-')
             let file = path.join(issuesDir, title_name + '.md');
-             
-
+            
             info.data.push({
-                id:     ele?.id,
-                title:  ele?.title,
+                id:     item?.id,
+                title:  item?.title,
                 author: ele?.user?.login || owner,
                 labels: ele?.labels?.map(i=>i?.name),
-                updated:ele?.created_at,
+                updated:item?.created_at,
                 name :  title_name + '.md',
-                intro:  ele.intro,
-                issues_url: ele?.html_url,
+                intro:  item.intro || item.created_at,
+                issues_url: item?.html_url,
             });
 
             fs.writeFile(file, ele.body, (err) => {
