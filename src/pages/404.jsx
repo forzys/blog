@@ -16,6 +16,7 @@ export default memo((props) =>{
             <p>
                 <i>{error?.statusText || error?.message}</i>
             </p>
+            <a href="/">Back to home</a>
         </div>
     );
 })
