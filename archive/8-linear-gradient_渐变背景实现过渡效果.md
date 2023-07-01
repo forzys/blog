@@ -108,7 +108,7 @@ if (window.CSS) {
 
 **其他方式 例如利用动画属性也可以实现**
 
-## 最终效果
+## 最终效果 [直达](https://forzys.github.io/blog/theme)
 
 <img src="https://s2.loli.net/2023/07/01/saJ2Z69yjrnmOfU.gif" width="50%" />
 
