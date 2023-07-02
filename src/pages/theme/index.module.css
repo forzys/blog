@@ -61,8 +61,7 @@
     cursor: pointer;
     color: rgba(255,255,255, 0.85);
     background-color: rgba(0,0,0,.2);
-    transform: translateX(-36px);
-
+    transform: translateX(-36px); 
     transition: all 0.5s;
 }
 
@@ -91,20 +90,19 @@
 .theme:hover .item span{
     transform: translateX(-42px);
 }
-
-
+ 
 
 .color3 { 
-    animation-duration: 0.5s; 
+    animation-duration: 0.2s; 
 }
 .color2 { 
-    animation-duration: 1.0s;
+    animation-duration: 0.4s;
 }
 .color1 { 
-    animation-duration: 1.5s;
+    animation-duration: 0.6s;
 }
 .color0 { 
-    animation-duration: 2.0s; 
+    animation-duration: 0.8s; 
 }
 
  
