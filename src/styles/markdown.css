@@ -45,7 +45,8 @@ h6 {
 	font-weight: normal;
 	color: #AAA;
 }
-img { 
+img {
+	max-width: 100%;
 	border-radius: 5px;
 	display: block;
 	margin-bottom: 15px;
