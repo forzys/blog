@@ -52,12 +52,12 @@ export default memo((props: any)=>{
         </main>
        
         <footer className={styles.footer}>
-            <a href="https://beian.miit.gov.cn/">豫ICP备2023012795号</a>
-            <span className={styles.item}> 
-              
-              <a className={styles.github} target='_blank' href="https://github.com/forzys/blog" />  
-              <a>Copyright@2023 </a>
-            </span> 
+            
+            <span className={styles.item}>  
+                <a href="https://beian.miit.gov.cn/">豫ICP备2023012795号</a> 
+                <a className={styles.github} target='_blank' href="https://github.com/forzys/blog" />  
+                <a>Copyright@2023 </a>
+            </span>
         </footer>
  
         </>
