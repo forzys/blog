@@ -112,49 +112,92 @@ export function offset(el){
     pos.left +=onGetScroll(win, false);
     return pos;
 }
+ 
 
+export const EventBus = (function(){
+    let topics = {}, offEvents ={}, uuid = 0;
+ 
+    function subscribe (topic, callback, once) {
+        /**
+         * topic  被订阅的内容的key值
+         * callback 订阅者传入的订阅事件
+         * once 是否只订阅一次
+         */
 
-export const mediator = (function () {
-    let topics = [], uuid = 0;
-
-    function subscribe (topic, callback) {
         uuid ++
         topics[topic] = topics[topic]
-            ? [...topics[topic], { callback, uuid }]
-            : [{ callback, uuid }]
+            ? [...topics[topic], { callback, uuid, once }]
+            : [{ callback, uuid, once }]
+ 
+        if(offEvents[topic]){
+            publish(topic, ...offEvents[topic])
+        }
+
+        return uuid
     }
 
     function publish (topic, value) {
-        if (topics[topic]) {
-            topics[topic].map(item => item.callback(value))
-        }
-    }
-
-    function remove (topic, callback) {  
+        /**
+         * topic 被发布的内容的key值
+         * value 发布者传入的订阅事件
+         */
         if (topics[topic]) { 
-            delete topics[topic]
+            for (let i = 0; i < topics[topic].length; i++) {
+                let item = topics[topic][i]
+                item.callback(value); 
+                // 只订阅一次 则执行之后销毁
+                if (item.once) {
+                    topics[topic].splice(i, 1)
+                }
+            } 
+        }else{
+            // 先发布再订阅事件 则先存储发布事件
+            offEvents[topic] = [value]
         }
-        callback();
+    }
+ 
+    function unsubscribe(topic, callback){
+        /**
+         * topic 被取消订阅的内容的key值
+         * callback 取消订阅者传入的订阅事件 | 订阅时返回的uuid | 默认取消所有订阅
+         */
+        if (topics[topic]) {
+            let name = ''
+            if(callback instanceof Function){
+                name = 'callback'
+            }
+            if(typeof callback === 'number'){
+                name = 'uuid'
+            }
+
+            if(typeof callback === 'undefined'){
+                name = 'undefined'
+            }
+
+            for (let i = 0; i < topics[topic].length; i++) {
+                let fn = topics[topic][i][name] 
+                if (fn === callback) {
+                    fn ? topics[topic].splice(i, 1) : topics[topic].pop()
+                }
+            }   
+        }
     }
 
-    function current (){
-        let arg = []
-        for(item in topics) 
-        arg.push(item)
-        return arg
-    }
+    // 订阅一次 执行之后销毁
+    function subscribeOnce(topic, callback){
+        return subscribe(topic, callback, true)
+    } 
 
-    return { 
-        install: function (obj) {
-            obj.remove = remove
-            obj.current = current
-            obj.uuid = uuid
-            obj.publish = publish
-            obj.subscribe = subscribe 
-            return obj
-        } 
+    return {
+        subscribe,
+        publish,
+        unsubscribe,
+        subscribeOnce
     }
+     
 })()
+ 
+
 
 
  
