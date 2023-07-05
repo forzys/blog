@@ -1,5 +1,5 @@
  
-figure {
+figure.figure {
     display: inline-flex;    
 
     margin-inline-start: 0;
@@ -9,18 +9,18 @@ figure {
 
 }
 
-figure img {
+figure.figure img {
     display: block;
     width: 256px;
     height: 192px;
+    border-radius: 3px;
 }
 
-figure > span {
+figure.figure > span {
     container-type: inline-size;
 }
 
-
-figcaption {
+.figure figcaption {
     display: flex;
     box-sizing: border-box;
     align-items: center;
@@ -37,18 +37,18 @@ figcaption {
 }
 
 
-figure:hover figcaption{
+figure.figure:hover figcaption{
     opacity: 0.9;
     z-index: 1;
 }
 
-figcaption span{
+.figure figcaption span{
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
-figcaption span.info{ 
+.figure figcaption span.info{ 
     padding-left: 6px;
     font-size: 14px;
     font-weight: bold; 

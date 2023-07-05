@@ -3,7 +3,7 @@ import Configure from '@/components/icons/configure'
 import Modal from '@/components/modal'
 import Media from '@/components/icons/media'
 import { useMemoizedFn } from '@/common/hooks'
-import './index.css' 
+import styles from './index.module.css' 
 
 
 
@@ -13,12 +13,12 @@ export default memo((props)=>{
     const onOpen = useMemoizedFn((info)=>{ setOpen(!!info) });
  
     return (
-        <figure>
+        <figure className={styles.figure}>
             <span><img src={[props?.img, props.src]} /></span>
             <figcaption style={{ fontSize: 16, padding: '0 6px'}}>
                 <Media picture />
-                <span className='name'>image</span>
-                <span className='info'>
+                <span className={styles.name}>image</span>
+                <span className={styles.info}>
                     {[props?.title, props.children]}
                 </span>
                 <Configure 
