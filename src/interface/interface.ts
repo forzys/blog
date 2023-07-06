@@ -21,7 +21,7 @@ export interface RouteItem  {
 	path?: string|undefined;
 	isLink?: string;  
 	redirect?: string|boolean;
-	component?: string;
+	component?: string|null;
 	index?: boolean;
 	children?: RouteItem[];
 	element?: string|React.ReactNode;
