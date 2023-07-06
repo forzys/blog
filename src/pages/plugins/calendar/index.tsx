@@ -1,11 +1,9 @@
  
 import { memo,  useLayoutEffect } from "react";  
-import {   useUpdate } from '@/common/hooks' 
-import { useFetch, apis } from '@/request/index' 
-// import Card from "@/components/card";
+import { useUpdate } from '@/common/hooks' 
+import { useFetch, apis } from '@/request/index'  
 import styles from './index.module.css'
-
-
+ 
 
 export default memo((props)=>{
     const [https] = useFetch()
@@ -29,9 +27,7 @@ export default memo((props)=>{
         }); 
 
     },[])
-
-
-
+ 
 
     return (
         <div className="main" style={{background: 'rgba(0,0,0,0)'}}>  
