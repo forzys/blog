@@ -92,20 +92,19 @@ export default memo((props)=>{
                     {label: 'New', value: 'new'},
                     {label: 'Popular', value: 'popular'},
                 ]} 
-                className={styles.segment}
-
+                className={styles.segment} 
             />
 
             <Spining loading={state?.loading} style={{ flex: 1}}> 
                 <div className={styles.themes}>
                     {
-                        state?.themes?.map((item:any)=>{
+                        state?.themes?.map((item:any, idx:number)=>{
                             const paint = paintPalette(item.code)
                             return (
-                                <div key={item.code} className={styles.theme}>
+                                <div key={item.code} className={styles.theme} style={{ '--delay': idx % 4 } as any}>
                                     {paint.map((color:string, index:number)=>{
                                         return (
-                                            <div key={color} className={styles.item +' ' + styles['color' + index]} style={{ background:color, '--color': color } as any}>
+                                            <div key={color} className={styles.item +' ' + styles['color' + index]} style={{ background:color }}>
                                                 <span>{color}</span> 
                                             </div>
                                         )
