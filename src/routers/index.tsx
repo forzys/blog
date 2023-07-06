@@ -14,7 +14,7 @@ import Routes from './router.config'
 // import Layout from '@/layout/index';
 // import NotFound from '@/pages/404.jsx'
 
-const modules:Record<string, () => Promise<any>> = import.meta.glob(['@/layout/*.tsx', '@/pages/*/index.tsx', '@/pages/404.jsx'])
+const modules:Record<string, () => Promise<any>> = import.meta.glob(['@/layout/*.tsx', '@/pages/*/index.tsx', '@/pages/*/**/index.tsx', '@/pages/404.jsx'])
 
   
 function LazyLoad(Component: React.LazyExoticComponent<any>): React.ReactNode {
@@ -28,14 +28,14 @@ function LazyLoad(Component: React.LazyExoticComponent<any>): React.ReactNode {
 
 function Loader(routers: RouteItem[]): RouteObject[] {
     return routers?.map((item: any )=> {
-        const path = item.component.replace('@', '/src'); 
-        const component = modules[path] 
-        console.log({ modules, item, component, path });
+        const path = item?.component?.replace('@', '/src'); 
+        // const component = path ? modules[path] :null
+        console.log({ modules, item, path });
 
         return {
             path: item.path,
             index: item.index, 
-            element: LazyLoad(React.lazy(modules[path])),
+            element: path ? LazyLoad(React.lazy(modules[path])): null,
             origin: item.component,
             children: Array.isArray(item?.children) ? Loader(item?.children) : undefined
         }
