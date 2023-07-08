@@ -23,23 +23,43 @@ export function numberFormat(num = '', decimals = 2, info) {
 
 export const dateFormat = function(input) { 
     const date = new Date( input || Date.now())
-    const formatType = {
-        Y: date.getFullYear(),
-        M: date.getMonth() + 1,
-        D: date.getDate(),
-        h: date.getHours(),
-        m: date.getMinutes(),
-        s: date.getSeconds(),
+    let oneDay = 1000 * 60 * 60 * 24
+    let formatType = onChange(date)
+    function onChange(time){ 
+        return {
+            Y: time.getFullYear(),
+            M: time.getMonth() + 1,
+            D: time.getDate(),
+            h: time.getHours(),
+            m: time.getMinutes(),
+            s: time.getSeconds(),
+        }
     }
     
-      return {
-          format:(formatStr)=>{
+    
+    const Funcs = { 
+        after:(num = 1, type='day')=>{
+            formatType = onChange( new Date(date.getTime() + oneDay * num) )
+             
+            return Funcs
+        },
+        before:(num= 1, type='day')=>{
+            formatType = onChange(new Date(date.getTime() - oneDay * num))
+ 
+            return Funcs
+
+        },
+        
+        format:(formatStr)=>{
             return formatStr ? formatStr.replace(
                 /Y+|M+|D+|h+|m+|s+/g,
                 target => (new Array(target.length).join('0') + formatType[target[0]]).substr(-target.length)
             ): date.getTime()
-          }
+        }, 
+          
       }
+
+      return Funcs
 }
  
 
