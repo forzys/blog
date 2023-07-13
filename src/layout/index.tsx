@@ -6,6 +6,7 @@ import { useEffect, useState, CSSProperties,memo, useMemo } from 'react'
 import { Outlet } from "react-router-dom";
 import Segment from '@/components/segment'
 import { useUid, useActive, useObserver, useUpdate, useMemoizedFn } from '@/common/hooks' 
+import Timing from '@/components/timing' 
 import styles from './index.module.css';
 // import github from '../assets/github.svg';
 
@@ -66,7 +67,10 @@ export default memo((props: any)=>{
                                 </div>
                             )
                         })
-                    } 
+                    }
+                    <div>
+                        <Timing time /> 
+                    </div>
                 </div>
             </div>
                 
