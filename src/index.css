@@ -1,6 +1,4 @@
 @import url(./styles/normalize.css);
-@import url(./styles/markdown.css);
-@import url(./styles/code.css);
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;

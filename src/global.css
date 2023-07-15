@@ -48,10 +48,11 @@ body{
 body {
   /* 需要设置背景 */
   /* background: #fff; */
-  font-family: "Rubik", sans-serif;
+  /* font-family: "Rubik", sans-serif; */
   display: flex;
   justify-content: center;
   height: 100vh;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
 }
 
 body.dark-mode {
