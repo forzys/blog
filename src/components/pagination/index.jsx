@@ -23,7 +23,7 @@ export default memo((props)=>{
 
     useEffect(()=>{
         if(props.page && props.page !== pagination.active){
-            pagination.page(props.page)
+            pagination.page(Number(props.page))
         }
     },[props.page])
 
