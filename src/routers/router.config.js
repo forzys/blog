@@ -50,6 +50,14 @@ const routers = [
                         path: "/plugins/calendar",
                         component: '@/pages/plugins/calendar/index.tsx', 
                     },
+                    {
+                        path: "/plugins/wallpaper",
+                        component: '@/pages/plugins/wallpaper/index.tsx', 
+                    },
+                    {
+                        path: "/plugins/wallpaper/:id",   
+                        component: '@/pages/plugins/wallpaper/index.tsx',  
+                    },
                 ]
             },  
             {
