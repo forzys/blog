@@ -10,7 +10,8 @@ import Button from "@/components/button";
 import Spining from "@/components/spining";
 
 import styles from './index.module.css'
- 
+import '../../styles/markdown.css'
+import '../../styles/code.css'
  
  
 export default memo((props)=>{
