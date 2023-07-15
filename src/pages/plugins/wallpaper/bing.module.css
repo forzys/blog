@@ -1,0 +1,33 @@
+
+
+
+.imageList{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+
+
+.imageBox{
+    margin-bottom: 15px; 
+    position: relative;
+
+    overflow: hidden;
+}
+
+.image{
+    margin: 0 auto;
+    width: 100%;
+}
+
+.imageBox footer{
+    position: absolute;
+    bottom: 12px;
+ 
+    padding: 3px 6px;
+    cursor: pointer;
+    color: rgba(255,255,255, 0.85);
+    background-color: rgba(0,0,0,.2);
+    backdrop-filter: blur(1px); 
+}

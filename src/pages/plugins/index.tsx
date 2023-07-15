@@ -22,6 +22,7 @@ export default memo((props)=>{
                     [
                         { title: 'Calendar', key: 'calendar' },  
                         { title: 'Video', key: 'video' },  
+                        { title: 'Wallpaper', key: 'wallpaper' },  
                     ].map((item) => {
                         return  <Button type="primary" onClick={onChange.bind(null,item)}>{item.title}</Button> 
                          
