@@ -30,8 +30,7 @@ export default memo((props: any)=>{
     const init = useMemo(()=>location?.pathname?.replace('/', ''),[])
 
 
-    const onChange = (item: SegmentType)=>{
- 
+    const onChange = (item: SegmentType)=>{ 
         navigate('/' + item.key) 
     }
  
@@ -73,37 +72,22 @@ export default memo((props: any)=>{
                     </div>
                 </div>
             </div>
-                
-          
-            {/* <div className={styles.inner}>
-                <Segment 
-                    fontSize="0.8rem"
-                    init={init}
-                    options={[
-                        {label: 'Blog',     value: 'blog'},
-                        {label: 'Video',     value: 'video'},
-                        {label: 'Component',value: 'component'},
-                        {label: 'Calendar',  value: 'calendar'},
-                        {label: 'Theme',  value:'theme'},
-                    ]}
-                    onChange={onSegmentChange}
-                />
-            </div> */}
+                 
         </header> 
         
         <main className={styles.main}>
           <Outlet />
         </main>
        
-        <footer className={styles.footer}>
-            
-            <span className={styles.item}>  
-                <a href="https://beian.miit.gov.cn/">豫ICP备2023012795号</a> 
-                <a className={styles.github} target='_blank' href="https://github.com/forzys/blog" />  
-                <a>Copyright@2023 </a>
+        <footer className={styles.footer}> 
+            <span className={styles.item}>
+                <a className={styles.github} target='_blank' href="https://github.com/forzys/blog" />
+                <span className={styles.item} style={{flexDirection:'column', gap:0}}>
+                    <a target='_black' href="https://beian.miit.gov.cn/">豫ICP备2023012795号</a>  
+                    <a>Copyright©2023 Forzys </a>
+                </span> 
             </span>
-        </footer>
- 
+        </footer> 
         </>
        
     )
