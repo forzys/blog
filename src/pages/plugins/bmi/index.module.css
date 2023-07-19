@@ -1,0 +1,39 @@
+
+
+.inputBox{
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.bmiBox{
+    composes: inputBox;
+    padding: 3px 24px;
+    gap: 36px;
+
+    --bmi-0: #7FFFD4;
+    --bmi-1: #B0E0E6;
+    --bmi-2: #BDFCC9;
+    --bmi-3: #E3CF57;
+    --bmi-4: #DAA569;
+    --bmi-5: #FF8000;
+    --bmi-6: #FF6100;
+    --bmi-7: #FF0000;
+    
+    background:var(--color-bmi)
+}
+
+ 
+ 
+
+.fields{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+}
+
+.fields> span{
+    font-size: 14px;
+    
+}
