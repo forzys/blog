@@ -66,6 +66,7 @@ export default memo((props)=> {
                 type={props.type || undefined}
                 readOnly={props.readOnly}
                 autoComplete="off"
+                name={props?.name}
                 // ref={innerRef}
                 value={props.value}
                 onClick={props?.onClick}
