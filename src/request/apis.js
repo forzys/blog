@@ -11,6 +11,7 @@ export default {
     
     // themes: 'https://github.moeyy.xyz/https://raw.githubusercontent.com/for2me/dataset/themes/$type/$var.json',
     themes: 'https://raw.githubusercontent.com/forzys/dataset/main/themes/$type/$var.json',
+    bmi: 'https://raw.githubusercontent.com/forzys/dataset/main/bmi/bmi.json',
     
     bingbz: 'https://raw.githubusercontent.com/forzys/dataset/main/bing/$var.json',
       
