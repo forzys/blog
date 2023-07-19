@@ -58,6 +58,10 @@ const routers = [
                         path: "/plugins/wallpaper/:id",   
                         component: '@/pages/plugins/wallpaper/index.tsx',  
                     },
+                    {
+                        path: "/plugins/bmi",   
+                        component: '@/pages/plugins/bmi/index.tsx',  
+                    },
                 ]
             },  
             {
