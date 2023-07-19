@@ -8,7 +8,7 @@ import { useFetch, apis } from "@/request";
 
 
 export default memo(()=>{
-    const [bmi, setBmi] = useState('')
+    const [bmi, setBmi] = useState(0)
     const [active, setActive] = useState('')
     const [level, setLevel] = useState([])
     const [http] = useFetch();
@@ -30,18 +30,12 @@ export default memo(()=>{
 
     const onBMISubmit = (e:any)=>{
         if(e?.target?.localName === 'form' && e?.type === "submit"){
-            e.preventDefault();
-
+            e.preventDefault(); 
             const elements = e?.target?.elements
             const weight = elements.weight?.value
-            const height = elements.height?.value
-
-
-            const bmi = weight / (height ** 2 / 100 ** 2)
-            // bmi的计算公式为体重指数BMI=体重kg/身高^2 (m)
-  
-            setBmi(String(bmi)?.slice(0,4))
-
+            const height = elements.height?.value;
+            const bmi = weight / (height ** 2 / 100 ** 2); 
+            bmi && setBmi(Math.round(bmi * 10) / 10) 
         } 
  
       
