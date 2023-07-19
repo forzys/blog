@@ -32,6 +32,10 @@ export default memo((props)=>{
     const uid = useUid('seg')
     const refs = useRef({})
     const mounted = useRef();
+
+    useEffect(()=>{ 
+        setActive(props.init || onGetDefault(props.options));
+    },[props.init, props.options])
   
     useLayoutEffect(()=>{
         if (!mounted.current) {
@@ -108,7 +112,7 @@ export default memo((props)=>{
     },[position])
 
 
-    const onChange = useCallback((item)=>{
+    const onChange = useCallback((item)=>{ 
         setActive(item.value); 
         props?.onChange?.(item.value, item);
     },[])
