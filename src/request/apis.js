@@ -10,10 +10,10 @@ export default {
     // holiday: 'https://raw.githubusercontent.com/imm-o/holiday-cn/master/$var.json',
     
     // themes: 'https://github.moeyy.xyz/https://raw.githubusercontent.com/for2me/dataset/themes/$type/$var.json',
-    themes: 'https://raw.githubusercontent.com/forzys/dataset/main/themes/$type/$var.json',
-    bmi: 'https://raw.githubusercontent.com/forzys/dataset/main/bmi/bmi.json',
+    themes: 'https://raw.githubusercontent.com/forzys/dataset/main/dataset/themes/$type/$var.json',
+    bmi: 'https://raw.githubusercontent.com/forzys/dataset/main/dataset/bmi/bmi.json',
     
-    bingbz: 'https://raw.githubusercontent.com/forzys/dataset/main/bing/$var.json',
+    bingbz: 'https://raw.githubusercontent.com/forzys/dataset/main/dataset/bing/$var.json',
       
     archive: 'https://github.moeyy.xyz/https://raw.githubusercontent.com/forzys/blog/main/archive/$blog.md',
     // archive: 'https://cdn.jsdelivr.net/gh/forzys/blog@main/archive/$blog.md',
