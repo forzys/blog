@@ -17,4 +17,5 @@ My personal blog using issues and GitHub Actions (随意转载，无需署名)
 - [linear-gradient 渐变背景实现过渡效果](https://github.com/forzys/blog/issues/8)--2023-07-01
 - [Custom Markdown](https://github.com/forzys/blog/issues/7)--2023-06-29
 ## 生活
+- [搬家了！](https://github.com/forzys/blog/issues/11)--2023-07-31
 - [Github Page 折腾记](https://github.com/forzys/blog/issues/6)--2023-06-29
