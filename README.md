@@ -5,6 +5,7 @@ My personal blog using issues and GitHub Actions (随意转载，无需署名)
 | Name | Link | Desc | 
  | ---- | ---- | ---- |
 ## 最近更新
+- [Flex 布局的一些总结](https://github.com/forzys/blog/issues/12)--2023-08-07
 - [搬家了！](https://github.com/forzys/blog/issues/11)--2023-07-31
 - [关于事件循环(Event Loop)的理解](https://github.com/forzys/blog/issues/10)--2023-07-13
 - [设计模式之发布订阅者模式](https://github.com/forzys/blog/issues/9)--2023-07-04
