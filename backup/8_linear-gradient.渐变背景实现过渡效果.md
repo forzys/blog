@@ -79,13 +79,13 @@
 > Houdini 是一组底层 API，它们公开了 CSS 引擎的各个部分，从而使开发人员能够通过加入浏览器渲染引擎的样式和布局过程来扩展 CSS。Houdini 是一组 API，它们使开发人员可以直接访问[CSS 对象模型](https://developer.mozilla.org/zh-CN/docs/Web/API/CSS_Object_Model) （CSSOM），使开发人员可以编写浏览器可以解析为 CSS 的代码，从而创建新的 CSS 功能，而无需等待它们在浏览器中本地实现。
 ```css
 .box{
- --bg-0:#98eecc;
+  --bg-0:#98eecc;
   --bg-1:#d0f5be;
   background-image: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
   transition: --bg-1 .5s, --bg-2 .5s;
 } 
 .box:hover {
-     --bg-0:#fbffdc; 
+    --bg-0:#fbffdc; 
     --bg-1:#a4907c; 
 }
 ```
@@ -107,6 +107,33 @@ if (window.CSS) {
 }
 ```
 > 注意TypeScript 编译器无法正确地识别 CSS 对象上的 registerProperty 方法 需要使用类型断言 将CSS对象的类型设置为 any. [当前各浏览器对Houdini的支持情况](https://ishoudinireadyyet.com/)
+
+### 4.1 【23-08-08更新】
+ - 无需JS参与使用`@property`规则，对CSS变量进行自定义，可将CSS变量定义为过渡属性 
+```css
+@property --bg-0 { 
+    syntax: '<color>';
+    inherits: false;
+    initial-value: transparent;
+}
+@property --bg-1 { 
+    syntax: '<color>';
+    inherits: false;
+    initial-value: transparent;
+}
+
+.box{
+  --bg-0:#98eecc;
+  --bg-1:#d0f5be;
+  background-image: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+  transition: --bg-1 .5s, --bg-2 .5s;
+} 
+.box:hover {
+    --bg-0:#fbffdc; 
+    --bg-1:#a4907c; 
+}
+```
+
 
 **其他方式 例如利用动画属性也可以实现**
 
