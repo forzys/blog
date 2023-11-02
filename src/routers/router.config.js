@@ -62,6 +62,10 @@ const routers = [
                         path: "/plugins/bmi",   
                         component: '@/pages/plugins/bmi/index.tsx',  
                     },
+                    {
+                        path: "/plugins/watermark",   
+                        component: '@/pages/plugins/watermark/index.tsx',  
+                    },
                 ]
             },  
             {
