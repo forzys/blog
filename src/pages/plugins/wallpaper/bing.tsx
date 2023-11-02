@@ -33,17 +33,14 @@ const useImagesObserver = (props:any)=>{
 
 
     useEffect(()=>{ 
-        const current:any = ref.current
-
- 
+        const current:any = ref.current 
         current?.children.length &&
         Array.from(current?.children)?.forEach((item:any)=>{ 
             observer.observe(item)
         });
 
         return ()=>{
-            const current:any = ref.current;
-
+            const current:any = ref.current; 
             current?.children.length &&
             Array.from(current?.children)?.forEach((item:any)=>{
                 observer.unobserve(item)

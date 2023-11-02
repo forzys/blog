@@ -24,6 +24,7 @@ export default memo((props)=>{
                         { title: 'Video', key: 'video' },  
                         { title: 'Wallpaper', key: 'wallpaper' },  
                         { title: 'BMI', key: 'bmi' },  
+                        { title: '水印', key: 'watermark' },  
                     ].map((item) => {
                         return  <Button type="primary" onClick={onChange.bind(null,item)}>{item.title}</Button> 
                          

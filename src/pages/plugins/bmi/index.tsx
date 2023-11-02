@@ -12,22 +12,19 @@ export default memo(()=>{
     const [active, setActive] = useState('')
     const [level, setLevel] = useState([])
     const [http] = useFetch();
-
-
-    useEffect(()=>{ 
+ 
+    useEffect(()=>{
         http.get(apis.bmi).then((res)=>{
             setLevel(res.data)
-            const [first] = res.data 
+            const [first] = res.data
             setActive(first.name)
         });
     },[])
-
-
+ 
     const options:any = useMemo(()=>level?.map((item:any)=>item?.name), [level])
 
     const bmiInfo:any = useMemo(()=>level.find((item:any)=>item?.name === active),[level, active])
-
-
+ 
     const onBMISubmit = (e:any)=>{
         if(e?.target?.localName === 'form' && e?.type === "submit"){
             e.preventDefault(); 
@@ -36,11 +33,8 @@ export default memo(()=>{
             const height = elements.height?.value;
             const bmi = weight / (height ** 2 / 100 ** 2); 
             bmi && setBmi(Math.round(bmi * 10) / 10) 
-        } 
- 
-      
-        return 
-     
+        }
+        return
     }
 
     return (
