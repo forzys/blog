@@ -1,10 +1,6 @@
 
 
-
-
-
-
-
+ 
 
 export function numberFormat(num = '', decimals = 2, info) {
 	const { pre = '', suf = '', currency = true, init = '-' } = typeof info === 'object' ? info : { currency: false };
@@ -77,22 +73,12 @@ export function onGetBase64(file) {
 }
 
 
-export function onUUID (name = ''){
-    const uid = Math.random().toString(36).slice(2, 11)
-    return name ? name + uid.slice(-7) : uid
-}
-
-
+export const uuid = (name = '') => name + Math.random().toString(36).slice(2, 11).slice(-7)
+ 
 export function classes(init, ...names){
     return [init, ...names]?.filter(Boolean).join(' ');
-}
-
-
-// export function onCookie(name){
-//     return `; ${document.cookie}`.split(`; ${name}=`).pop().split(';').shift();
-// }
-
-
+} 
+ 
 export const onCookie = name => `; ${document.cookie}`.split(`; ${name}=`).pop().split(';').shift();
 
 
@@ -104,6 +90,8 @@ export const transpose = (matrix) => matrix[0].map((col, i) => matrix.map((row) 
 //         [7, 8, 9], //      [3, 6, 9],
 //      ]             //  ]
 //  ); 
+
+export const telhiding = (telphone)=>`${telphone}`.replace(/(\d{4})\d{4}(\d{3})/,"$1****$2")
 
 function onGetScroll(win, top) {
     const [x, t] = top ? ['Y', 'Top'] : ['X', 'Left']

@@ -10,7 +10,7 @@ import { useCreation, useUpdate, useActive } from  '@/hooks/useUpdate'
 import { usePagination } from  '@/hooks/usePagination'
 import { useObserver } from '@/hooks/useObserver'
 import { useMergedRef } from '@/hooks/useMergedRef'
-import { onUUID, EventBus } from './common'
+import { uuid, EventBus } from './common'
 
  
 
@@ -46,7 +46,7 @@ export const useUid = (name)=> {
     const [uid, setUid] = useState();
     
     useEffect(() => {
-        setUid(onUUID(name));
+        setUid(uuid(name));
     }, []);
 
     return uid
