@@ -13,7 +13,7 @@ export default function ActivePortal(props) {
         ? document.createElement('div')
         : typeof props.target === 'string'
         ? document.querySelector(target)
-        : target;
+        : props.target;
 
         !props.target && 
         document.body.appendChild(ref.current);
