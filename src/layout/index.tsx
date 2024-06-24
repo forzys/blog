@@ -57,13 +57,21 @@ export default memo((props: any)=>{
                     <div className={styles.item} key='blog' onClick={onChange.bind(null,{  title: 'Blog', key: 'blog' })}>
                         Blog
                     </div>
-
+ 
                     <a className={styles.item} key='M3U8视频提取' href="/m3u8-downloader/index.html">
                         M3U8视频提取
                     </a>
 
                     <a className={styles.item} key='Iconfont在线预览' href="/preview.html">
                         Iconfont在线预览
+                    </a>
+
+                    <a className={styles.item} key='img' target="_blank" href="https://image.19941024.xyz/">
+                        for-Image图床
+                    </a>
+                    
+                    <a className={styles.item} key='img' target="_blank" href="https://short.19941024.xyz/">
+                        短网址
                     </a>
 
                 </div>

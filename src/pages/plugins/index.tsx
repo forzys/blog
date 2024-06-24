@@ -9,22 +9,21 @@ import Groups from "@/components/group";
 export default memo((props)=>{
     const [state, setState, { navigate, params, location }] = useUpdate({ loading: true })
 
-    function onChange(item: any){
-        navigate('/plugins/' + item.key)
+    function onChange(item: any){ 
+        navigate((item.first ? '/' : '/plugins/') + item.key)
     }
-
    
     return (
-        <div className='main'>  
-
-            <Groups style={{ marginBottom: 24 }}>
+        <div className='main'>
+            <Groups style={{ marginBottom: 24, flexDirection: 'column', alignItems:'flex-start' }}>
                 {
                     [
-                        { title: 'Calendar', key: 'calendar' },  
-                        { title: 'Video', key: 'video' },  
-                        { title: 'Wallpaper', key: 'wallpaper' },  
-                        { title: 'BMI', key: 'bmi' },  
-                        { title: '水印', key: 'watermark' },  
+                        { title: '身体指数(BMI)', key: 'bmi' },  
+                        { title: '放假安排', key: 'calendar' },  
+                        { title: '视频解析', key: 'video' },  
+                        { title: '必应壁纸', key: 'wallpaper' },
+                        // { title: '水印', key: 'watermark' },  
+                        { title: '背景主题', key: 'theme', first: true, },  
                     ].map((item) => {
                         return  <Button type="primary" onClick={onChange.bind(null,item)}>{item.title}</Button> 
                          
