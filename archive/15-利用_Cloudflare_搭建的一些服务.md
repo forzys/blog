@@ -8,7 +8,7 @@
 项目地址：[short](https://github.com/forzys/short).  
 线上地址：[short.19941024.xyz](https://short.19941024.xyz)
 
-### 3. 利用 Cloudflare Workers 搭建的免费订阅
+### 3. 利用 Cloudflare Workers 搭建的Trojan订阅
 项目地址：[epeius](https://github.com/forzys/epeius).   
 线上地址：**
 
