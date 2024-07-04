@@ -64,19 +64,17 @@ export default memo((props)=>{
  
     return (
         <div className="main"> 
-                <Spining loading={state.loading}>  
-                    {
-                        state.markdown 
-                        ? <div className={styles.markdown} dangerouslySetInnerHTML={{__html: state.markdown }} /> 
-                        :(
-                            <article className="blog-item" style={{ background:'#fff',padding:'12px', minHeight: 66, borderRadius: 6}}> 
-                                <aside style={{color: 'rgba(0,0,0,0.8)', fontSize: 14}}>{'加载中...'}</aside>
-                            </article>
-                        )
-                    }
-                </Spining> 
-                
-            {/* </Card> */}
+            <Spining loading={state.loading}>  
+                {
+                    state.markdown 
+                    ? <div className={styles.markdown} dangerouslySetInnerHTML={{__html: state.markdown }} /> 
+                    :(
+                        <article className="blog-item" style={{ background:'#fff',padding:'12px', minHeight: 66, borderRadius: 6}}> 
+                            <aside style={{color: 'rgba(0,0,0,0.8)', fontSize: 14}}>{'加载中...'}</aside>
+                        </article>
+                    )
+                }
+            </Spining>
         </div>
     )
 

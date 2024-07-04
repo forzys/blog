@@ -135,9 +135,10 @@ export default memo((props: any)=>{
                         </span> 
                     </span>
                     <span>
-                        <img style={{width: 120, height: 48 }} src="https://api.19941024.xyz/counter?type=img&img=true&VisitorText=訪問人數&HitText=訪問次數" alt=":name" /> 
+                        <img style={{width: 120, height: 48, marginBottom: 0}} src="https://api.19941024.xyz/counter?type=img&img=true&VisitorText=訪問人數&HitText=訪問次數" alt=":name" /> 
                     </span>
                 </footer>
+
                 <div className={styles.mask} style={{display:state.show ? 'block': 'none'}}  onClick={onShowMenu(false)} ></div>
             </div>
         </>
