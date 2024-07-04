@@ -50,21 +50,20 @@ const pageConfigs = [
     // }, {
     //   tag: 'div',
     //   text: '推荐一个 m3u8 网页版提取工具，无需下载软件，打开网站即可下载，自动检测，一键下载。',
-    // }],
-
+    // }], 
     // 自定义插入的 html
     // 参考资料：https://zhuanlan.zhihu.com/p/391844443
-    html: `
-    页面加载中，请耐心等待...
-    <h1 style="white-space: pre;"> 
-      m3u8 提取工具：https://blog.19941024.xyz/m3u8-downloader/index.html
-      Iconfont在线预览：https://blog.19941024.xyz/preview.html
-      免费图床工具：https://image.19941024.xyz/
-      免费短网址工具：https://short.19941024.xyz/ 
-      BMI身体指数：https://blog.19941024.xyz/plugins/bmi
-      渐变背景主题：https://blog.19941024.xyz/theme 
-    </h1>
-`,
+    html: ` 
+      页面加载中，请耐心等待...
+      <h1 style="white-space: pre;"> 
+        m3u8 提取工具：https://blog.19941024.xyz/m3u8-downloader/index.html
+        Iconfont在线预览：https://blog.19941024.xyz/preview.html
+        免费图床工具：https://image.19941024.xyz/
+        免费短网址工具：https://short.19941024.xyz/ 
+        BMI身体指数：https://blog.19941024.xyz/plugins/bmi
+        渐变背景主题：https://blog.19941024.xyz/theme 
+      </h1> 
+  `,
   }
 ];
 
@@ -83,6 +82,9 @@ pageLinkNum && pageConfigs.forEach(config => {
 
 const appendTagRegex = new RegExp(`(id="${appendTagId}"[^>]*>)`);
 const templateStr = fs.readFileSync(templatePath, 'utf8');
+
+ 
+
 pageConfigs.forEach(data => {
   // 读取目标文件内容
   let fileContent = templateStr;
@@ -94,12 +96,12 @@ pageConfigs.forEach(data => {
 
   // 替换 meta name="keywords" 标签
   if (data.keywords) {
-    fileContent = fileContent.replace(/name="keywords"[^>]+/, `name="keywords" content="${data.keywords}">`);
+    fileContent = fileContent.replace(/name="keywords"[^\/>]+/, `name="keywords" content="${data.keywords}"`);
   }
 
   // 替换 meta name="description" 标签
   if (data.description) {
-    fileContent = fileContent.replace(/name="description"[^>]+/, `name="description" content="${data.description}">`);
+    fileContent = fileContent.replace(/name="description"[^\/>]+/, `name="description" content="${data.description}"`);
   }
 
   // 插入自定义 html 标签
