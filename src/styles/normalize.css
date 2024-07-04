@@ -159,3 +159,7 @@ template {
 audio, canvas, embed, iframe, img, object, svg, video {
     display: block;
 }
+
+ul{
+    list-style-type: none;
+}
