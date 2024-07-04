@@ -11,12 +11,19 @@ const routers = [
             }, 
             {
                 path: "/blog",   
-                component: '@/pages/blog/index.tsx',  
+                // component: '@/pages/blog/index.tsx', 
+                children:[
+                    {
+                        index: true, 
+                        component: '@/pages/blog/index.tsx',  
+                    },
+                    {
+                        path: "/blog/:id",
+                        component: '@/pages/blog/detail.tsx',  
+                    }
+                ]
             },  
-            {
-                path: "/blog/:id",   
-                component: '@/pages/blog/index.tsx',  
-            },
+          
             {
                 path: "/rss",   
                 component: '@/pages/blog/index.tsx',  

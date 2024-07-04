@@ -1,0 +1,37 @@
+
+
+.indicator{
+    width: 20vh;
+    height: 20vh;
+    position:relative;
+    border-radius: 50%;
+    border: 4px double white;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: wheat;
+}
+.indicator::after{
+    width: 40vh;
+    height: 40vh;
+    content: "";
+    background-color: aquamarine;
+    border-radius: 15vh;
+    position: absolute;
+    left: 50%;
+    top:calc(100% - var(--completion) + var(--offset, 0%));
+    translate: -50% 0;
+    animation: spin 8s linear infinite;
+}
+
+
+@keyframes spin {
+    from{
+        transform: rotate(0);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}

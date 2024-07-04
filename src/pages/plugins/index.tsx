@@ -5,6 +5,7 @@ import { memo } from 'react';
 import { useUpdate } from "@/hooks/useUpdate";
 import Button from "@/components/button";
 import Groups from "@/components/group";
+import Water from '@/components/water';
 
 export default memo((props)=>{
     const [state, setState, { navigate, params, location }] = useUpdate({ loading: true })
@@ -15,7 +16,7 @@ export default memo((props)=>{
    
     return (
         <div className='main'>
-            <Groups style={{ marginBottom: 24, flexDirection: 'column', alignItems:'flex-start' }}>
+            <Groups style={{ background:'#FFF', marginBottom: 24, padding: 12, flexDirection: 'column', alignItems:'flex-start' }}>
                 {
                     [
                         { title: '身体指数(BMI)', key: 'bmi' },  
@@ -26,10 +27,10 @@ export default memo((props)=>{
                         { title: '背景主题', key: 'theme', first: true, },  
                     ].map((item) => {
                         return  <Button type="primary" onClick={onChange.bind(null,item)}>{item.title}</Button> 
-                         
                     })
                 }
-            </Groups>
+            </Groups> 
+            <Water />
           
         </div>
     )

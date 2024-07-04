@@ -14,7 +14,7 @@ import Routes from './router.config'
 // import Layout from '@/layout/index';
 // import NotFound from '@/pages/404.jsx'
 
-const modules:Record<string, () => Promise<any>> = import.meta.glob(['@/layout/*.tsx', '@/pages/*/index.tsx', '@/pages/*/**/index.tsx', '@/pages/404.jsx'])
+const modules:Record<string, () => Promise<any>> = import.meta.glob(['@/layout/*.tsx', '@/pages/*/index.tsx', '@/pages/*/*.tsx', '@/pages/*/**/index.tsx', '@/pages/404.jsx'])
 
   
 function LazyLoad(Component: React.LazyExoticComponent<any>): React.ReactNode {

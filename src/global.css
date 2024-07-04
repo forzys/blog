@@ -194,8 +194,10 @@ body.dark-mode {
   min-height: 75vh;
   margin: 0 auto;
   position: relative;
-  background-color: #fff;
-  padding: 24px;
+  background-color: transparent;
+  /* padding: 24px; */
+  padding: 12px;
+  border-radius: 5px;
 }
 
 

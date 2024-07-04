@@ -6,4 +6,43 @@
 	font-family: Helvetica, Arial, "PingFang SC", "Microsoft YaHei", "WenQuanYi Micro Hei", "tohoma,sans-serif";
 	margin: 0;
 	padding:5%;
+	border-radius: 6px;
+}
+
+
+.intro{
+	/* margin: 1em auto; */
+ 
+	width: 100%;
+	position: relative;
+	color: rgba(0,0,0,0.8); 
+	font-size: 14px;
+
+}
+
+.earser{
+	position: absolute;
+	inset: 0;
+	top: -14px;
+}
+
+.text{
+	--delay: 0s,
+	--progress:10%;
+	background: linear-gradient(to right, transparent var(--progress), #fff calc(var(--progress)  ));
+	color: transparent;
+	animation: erase 0.35s linear forwards;
+	animation-delay: var(--delay);
+
+}
+@keyframes erase {
+	to{
+		--progress: 100%;
+	}
+}
+
+@property --progress{
+	syntax: '<percentage>';
+	initial-value: 0%;
+	inherits: false;
 }
