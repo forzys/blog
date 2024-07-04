@@ -8,11 +8,9 @@
 	padding:5%;
 	border-radius: 6px;
 }
-
-
-.intro{
-	/* margin: 1em auto; */
  
+.intro{
+	/* margin: 1em auto; */ 
 	width: 100%;
 	position: relative;
 	color: rgba(0,0,0,0.8); 

@@ -236,7 +236,7 @@ export default memo((props)=>{
                             <Groups> 
                                 <Loading className='spinner-icon' type="1" /> 
                                 <Loading type="3" className='spinner-zoom' />
-                                <Loading type="2" className='spinner-icon2 ' fontSize="22px"  />  
+                                <Loading type="2" className='spinner-icon2' fontSize="22px"  />  
                             </Groups>
                             <Groups> 
                                 <Search search />
