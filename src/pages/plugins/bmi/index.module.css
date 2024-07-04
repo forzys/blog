@@ -4,8 +4,43 @@
     padding: 24px;
     display: flex;
     align-items: center;
+    gap: 24px;
     justify-content: space-between;
 }
+
+
+@media (max-width: 767px){
+    .inputBox{
+        display: flex;
+        padding: 24px 0;
+        flex-direction: column-reverse;
+    }
+
+    .inputBox .bmiInfo{
+        width: 80%;
+    }
+
+    .inputBox .bmiBox{
+        display: flex;
+        flex-direction: row;
+    } 
+
+    .fields{
+        justify-content: center;
+    }
+  
+    .fields > span{
+        font-size: 12px; 
+        white-space: nowrap;   /* 控制元素不换行 */
+        overflow: hidden;      /* p标签超出部分隐藏*/
+        text-overflow: ellipsis;   /* 文本超出部分为省略号 */
+    }
+
+    .fields > span.hidden{
+        display: none;
+    }
+}
+
 .bmiBox{
     composes: inputBox;
     padding: 3px 24px;
@@ -31,9 +66,4 @@
     align-items: center;
     gap: 6px;
     margin-top: 12px;
-}
-
-.fields> span{
-    font-size: 14px;
-    
 }
