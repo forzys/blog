@@ -39,8 +39,13 @@ pre[class*="language-"] {
 	border-top-right-radius: 0;
 
 	padding-bottom: 1.2em;
+	overflow-x: auto;
 }
 
+::-webkit-scrollbar{
+	background-color: #f1f1f1;
+	height: 5px;
+}
 .code > header{
 	position: relative;
 	text-align: center;

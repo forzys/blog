@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频提取音频</title>
+    <style>
+        body{
+            background-color: #f1f1f1;
+          
+        }
+        #app{
+            width:100%;
+            max-width: 720px;
+            min-height: 300px;
+            padding: 24px;
+            margin: 48px auto; 
+            border-radius: 5px;
+            background-color: #FFF;
+        }
+        .result:not(:empty) {
+            border: 1px dashed darkgray;
+            padding: 12px 16px;
+            margin-top: 24px;
+        }
+    </style>
+</head>
+<body> 
+    <div id="app">
+        <h4>1. 本地视频</h4>
+        <input type="file" id="file" accept="video/*">
+
+        <h4>2. 网络视频</h4>
+        <input type="url" id="input" placeholder="在线视频地址"> 
+
+        <div id="result" class="result"></div>
+    </div>
+</body> 
+<script type="module">
+    if (window.URL && window.URL.createObjectURL) {
+        var blob = new Blob(["Hello, world!"], {type: "text/plain"});
+        var url = window.URL.createObjectURL(blob);
+        console.log(url);
+        window.URL.revokeObjectURL(url); // 清理
+    } else {
+        console.log("你的浏览器不支持createObjectURL");
+    }
+    const handleBuffer = function (buffer, name) {
+        if (/\//.test(name)) {
+            name = name.split('/').slice(-1)[0];
+        }
+        
+        name = name.split('.')[0];
+    
+        // 也可以直接转Blob，不过本质上还是原视频
+        // const blob = new Blob([buffer], {type: 'audio/mp3'});
+        // // 使用Blob地址
+        // const blobUrl = URL.createObjectURL(blob);
+            
+        // result.innerHTML = `<h4>试听</h4>
+        //     <audio src="${blobUrl}" controls></audio>
+        //     <p>点击<a href="${blobUrl}" download="${name}.mp3">这里下载音频</a>。</p>
+        // `;
+    
+        // return;
+    
+        
+        // 创建音频上下文
+        const audioCtx = new AudioContext();
+        // arrayBuffer转audioBuffer
+        audioCtx.decodeAudioData(buffer, function(audioBuffer) {
+            // audioBuffer就是AudioBuffer
+            const blob = bufferToWave(audioBuffer, audioBuffer.sampleRate * audioBuffer.duration);
+            // 使用Blob地址
+            const blobUrl = URL.createObjectURL(blob);
+            
+            result.innerHTML = `<h4>试听</h4>
+                <audio src="${blobUrl}" controls></audio>
+                <p>点击<a href="${blobUrl}" download="${name}.wav">这里下载音频</a>。</p>
+            `;
+        });
+    };
+    
+    // Convert AudioBuffer to a Blob using WAVE representation
+    function bufferToWave(abuffer, len) {
+        var numOfChan = abuffer.numberOfChannels,
+        length = len * numOfChan * 2 + 44,
+        buffer = new ArrayBuffer(length),
+        view = new DataView(buffer),
+        channels = [], i, sample,
+        offset = 0,
+        pos = 0;
+    
+        // write WAVE header
+        // "RIFF"
+        setUint32(0x46464952);
+        // file length - 8                      
+        setUint32(length - 8);
+        // "WAVE"                     
+        setUint32(0x45564157);
+        // "fmt " chunk
+        setUint32(0x20746d66);  
+        // length = 16                       
+        setUint32(16);  
+        // PCM (uncompressed)                               
+        setUint16(1); 
+        setUint16(numOfChan);
+        setUint32(abuffer.sampleRate);
+        // avg. bytes/sec
+        setUint32(abuffer.sampleRate * 2 * numOfChan);
+        // block-align
+        setUint16(numOfChan * 2);
+        // 16-bit (hardcoded in this demo)
+        setUint16(16);                           
+        // "data" - chunk
+        setUint32(0x61746164); 
+        // chunk length                   
+        setUint32(length - pos - 4);                   
+    
+        // write interleaved data
+        for(i = 0; i < abuffer.numberOfChannels; i++)
+            channels.push(abuffer.getChannelData(i));
+    
+        while(pos < length) {
+             // interleave channels
+            for(i = 0; i < numOfChan; i++) {
+                // clamp
+                sample = Math.max(-1, Math.min(1, channels[i][offset])); 
+                // scale to 16-bit signed int
+                sample = (0.5 + sample < 0 ? sample * 32768 : sample * 32767)|0; 
+                // write 16-bit sample
+                view.setInt16(pos, sample, true);          
+                pos += 2;
+            }
+            // next source sample
+            offset++                                     
+        }
+    
+        // create Blob
+        return new Blob([buffer], {type: "audio/wav"});
+    
+        function setUint16(data) {
+            view.setUint16(pos, data, true);
+            pos += 2;
+        }
+    
+        function setUint32(data) {
+            view.setUint32(pos, data, true);
+            pos += 4;
+        }
+    }
+    
+    file.onchange = function (event) {
+        const file = event.target.files[0];
+        // 开始识别
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            const arrBuffer = event.target.result;
+            handleBuffer(arrBuffer, file.name);
+        };
+        reader.readAsArrayBuffer(file);
+        
+        // 显示loading
+        result.innerHTML = '<ui-loading></ui-loading>';
+    };
+    
+    input.onchange = function () {
+        if (this.matches(':invalid')) {
+            new LightTip('请输入合法的URL地址', 2000, 'error');
+            
+            return;	
+        }
+        
+        const url = this.value.trim();
+        
+        if (!url) {
+            return;	
+        }
+        
+        result.innerHTML = '<ui-loading></ui-loading>';
+        
+        fetch(url).then(res => res.arrayBuffer()).then(buffer => {
+            handleBuffer(buffer, url);	
+        });
+    };
+    </script>
+</html>

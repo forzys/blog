@@ -42,6 +42,11 @@ export default memo((props: any)=>{
                 <div className={styles.inner}> 
                     <ul style={{display:'flex', flexDirection:'column', gap: 12 }}>
                         <li>
+                            <a className={styles.item} key='视频提取音频' target='_black' href="/video2audio/index.html">
+                                视频提取音频
+                            </a>
+                        </li>
+                        <li>
                             <a className={styles.item} key='M3U8视频提取' target='_black' href="/m3u8-downloader/index.html">
                                 M3U8视频提取
                             </a>
@@ -90,6 +95,11 @@ export default memo((props: any)=>{
                                 <img src="/favicon128.png" style={{ width: '100%', height:'100%', overflow:'hidden' }} />
                             </div>
 
+                  
+                            <a className={styles.item} key='视频提取音频' target='_black' href="/video2audio/index.html">
+                                视频提取音频
+                            </a>
+                      
                             <a className={styles.item} key='M3U8视频提取' href="/m3u8-downloader/index.html">
                                 M3U8视频提取
                             </a>
