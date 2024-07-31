@@ -54,10 +54,10 @@ export default memo((props)=>{
                                 <article key={item?.id} className="blog-item" style={{ background:'#fff',padding:'12px', borderRadius: 6}}>
                                     <h3><a style={{cursor:'pointer'}} onClick={onSkip.bind(null,item)}>{item?.title || '...'}</a></h3>
                                     <div className={styles.intro}>
-                                        <p>{item?.intro?.slice(0,50)+'...'}</p> 
+                                        <p>{item?.intro?.length > 150 ? item?.intro?.slice(0,150)+'...' : item?.intro}</p> 
                                         <p className={styles.earser}>
                                             <span className={styles.text} style={{['--delay']: (i * 0.15) +'s' }}>
-                                                {item?.intro?.slice(0,50)+'...'}
+                                                {item?.intro?.length > 150 ? item?.intro?.slice(0,150)+'...' : item?.intro}
                                             </span>
                                         </p> 
                                     </div>

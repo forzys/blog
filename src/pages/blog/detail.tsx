@@ -48,8 +48,11 @@ export default memo((props)=>{
 
         https.get(archive, {type:'text'}).then((res)=>{ 
             if(res.success){
-                const markdown = converter.makeHtml(res.data)
-                state.markdown = markdown 
+                const markdown = converter.makeHtml(res.data) 
+                const comments = markdown?.match(/<!-- intro: (.*?)-->/s)
+                const [, comment] = comments || [] 
+                state.markdown = `<blockquote style="background:#f1f1f1;padding:6px;">${comment}</blockquote>` + markdown
+
             }
             setState({ loading: false, markdown: state.markdown  })
 
@@ -58,16 +61,17 @@ export default memo((props)=>{
  
     useEffect(()=>{   
         onGetDetail()
-  
-    },[]) 
-    
- 
+    },[])  
+
     return (
         <div className="main"> 
             <Spining loading={state.loading}>  
                 {
                     state.markdown 
-                    ? <div className={styles.markdown} dangerouslySetInnerHTML={{__html: state.markdown }} /> 
+                    ? (
+                        
+                        <div className={styles.markdown} dangerouslySetInnerHTML={{__html: state.markdown }} /> 
+                    )
                     :(
                         <article className="blog-item" style={{ background:'#fff',padding:'12px', minHeight: 66, borderRadius: 6}}> 
                             <aside style={{color: 'rgba(0,0,0,0.8)', fontSize: 14}}>{'加载中...'}</aside>
