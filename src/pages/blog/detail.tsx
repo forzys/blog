@@ -44,17 +44,21 @@ export default memo((props)=>{
     },[]) 
  
     const onGetDetail = ()=>{
-        const archive = apis.archive.replace('$blog', params.id); 
+        const archive = apis.archive.replace('$blog', params.id);
+        const [id] = params.id.split('-');
 
         https.get(archive, {type:'text'}).then((res)=>{ 
             if(res.success){
                 const markdown = converter.makeHtml(res.data) 
                 const comments = markdown?.match(/<!-- intro: (.*?)-->/s)
-                const [, comment] = comments || [] 
-                state.markdown = `<blockquote style="background:#f1f1f1;padding:6px;">${comment}</blockquote>` + markdown
-
+                const [, comment] = comments || []
+                state.markdown = `
+                <div style="display:flex;justify-content:flex-end;position:relative;top:-12px">
+                    <a class="github" title="源地址" target='_blank' href="https://github.com/forzys/blog/issues/${id}"></a>
+                </div>
+                <blockquote style="background:#f1f1f1;padding:6px;">${comment}</blockquote>` + markdown
             }
-            setState({ loading: false, markdown: state.markdown  })
+            setState({ loading: false, markdown: state.markdown, id  })
 
         }); 
     }
@@ -65,12 +69,15 @@ export default memo((props)=>{
 
     return (
         <div className="main"> 
-            <Spining loading={state.loading}>  
+            <Spining loading={state.loading}>
                 {
                     state.markdown 
                     ? (
+                        <div>
+                          
+                            <div className={styles.markdown} dangerouslySetInnerHTML={{__html: state.markdown }} />                 
+                        </div>
                         
-                        <div className={styles.markdown} dangerouslySetInnerHTML={{__html: state.markdown }} /> 
                     )
                     :(
                         <article className="blog-item" style={{ background:'#fff',padding:'12px', minHeight: 66, borderRadius: 6}}> 

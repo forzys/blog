@@ -81,14 +81,6 @@
     text-decoration: underline; 
 }
 
- 
-.github{
-    width: 18px;
-    height: 18px;
-    background-image: url('../assets/github.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-} 
 
  
 .main .more{

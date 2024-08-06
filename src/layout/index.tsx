@@ -138,7 +138,7 @@ export default memo((props: any)=>{
             
                 <footer className={styles.footer}> 
                     <span className={styles.item}>
-                        <a className={styles.github} target='_blank' href="https://github.com/forzys/blog" />
+                        <a className="github" target='_blank' href="https://github.com/forzys/blog" />
                         <span className={styles.item} style={{flexDirection:'column', gap:0}}>
                             <a target='_black' href="https://beian.miit.gov.cn/">豫ICP备2023012795号</a>  
                             <a>Copyright©2023 Forzys </a>
