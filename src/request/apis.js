@@ -15,10 +15,10 @@ export default {
     
     bingbz: 'https://raw.githubusercontent.com/forzys/dataset/main/dataset/bing/$var.json',
       
-    archive: 'https://github.moeyy.xyz/https://raw.githubusercontent.com/forzys/blog/main/archive/$blog.md',
+    archive: 'https://raw.githubusercontent.com/forzys/blog/main/archive/$blog.md',
     // archive: 'https://cdn.jsdelivr.net/gh/forzys/blog@main/archive/$blog.md',
 
-    blogs: 'https://github.moeyy.xyz/https://raw.githubusercontent.com/forzys/blog/main/archive/$blog.json', 
+    blogs: 'https://raw.githubusercontent.com/forzys/blog/main/archive/$blog.json', 
     // blogs: 'https://cdn.jsdelivr.net/gh/forzys/blog@main/archive/$blog.json',
 }
 // async function translation(array) {
