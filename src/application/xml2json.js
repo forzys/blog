@@ -358,7 +358,7 @@ export default function (config) {
     };
 
     this.xml2json = function (xmlDoc) {
-        return parseDOMChildren ( xmlDoc );
+        return parseDOMChildren (xmlDoc );
     };
     
     this.xml_str2json = function (xmlDocStr) {

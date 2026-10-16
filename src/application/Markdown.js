@@ -1339,7 +1339,7 @@ Markdown.Converter = function (OPTIONS) {
         if (!/\t/.test(text))
             return text;
 
-        var spaces = ["    ", "   ", "  ", " "],
+        var spaces = ["    ", "   ", "  ", " "], // 4 3 2 1 (最多4个空格)
         skew = 0,
         v;
 
