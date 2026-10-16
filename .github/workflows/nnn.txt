@@ -1,0 +1,51 @@
+name: Sync Figma Design Variables
+
+on:
+  schedule:
+    - cron: "30 4 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch Figma Variables & Editor Info
+        env:
+          FIGMA_API_KEY: ${{ secrets.FIGMA_API_KEY }}
+          FIGMA_FILE_KEY: ZEm9L8DlrXdHWuB1zpCZn4
+        run: |
+          set -euo pipefail
+
+          curl -s -H "X-Figma-Token: $FIGMA_API_KEY" \
+            "https://api.figma.com/v1/files/$FIGMA_FILE_KEY/variables/local" > variables_raw.json
+          VERSIONS=$(curl -s -H "X-Figma-Token: $FIGMA_API_KEY" \
+            "https://api.figma.com/v1/files/$FIGMA_FILE_KEY/versions")
+
+          LAST_EDITOR=$(echo "$VERSIONS" | jq -r '.versions[0].user.handle')
+          LAST_MODIFIED=$(echo "$VERSIONS" | jq -r '.versions[0].created_at')
+
+          jq --arg editor "$LAST_EDITOR" --arg modified "$LAST_MODIFIED" \
+            '. + { _meta: { last_editor: $editor, last_modified: $modified } }' \
+            variables_raw.json > tokens.json
+
+          rm variables_raw.json
+          echo "LAST_EDITOR=$LAST_EDITOR" >> "$GITHUB_ENV"
+          echo "LAST_MODIFIED=$LAST_MODIFIED" >> "$GITHUB_ENV"
+
+      - name: Commit if changed
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add tokens.json
+
+          if ! git diff --cached --quiet; then
+            git commit -m "$(printf "chore: sync figma tokens\n\nLast edited by: %s\nLast modified: %s" "$LAST_EDITOR" "$LAST_MODIFIED")"
+            git push origin HEAD
+          fi
